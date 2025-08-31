@@ -1,9 +1,15 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import ProtectedRoute from "./PrivateRoute";
+const ProfilePage = React.lazy(
+  () => import("../components/post_login/ProfilePage")
+);
+const AppShellLayout = React.lazy(() => import("../layouts/AppShellLayout"));
 const NotFound = React.lazy(() => import("../components/not_found/NotFound"));
 const PostHome = React.lazy(() => import("../pages/overview/Dashboard"));
-const UserDashboard = React.lazy(() => import("../LiveMonitoring"));
+const UserDashboard = React.lazy(
+  () => import("../pages/monitoring/LiveMonitoring")
+);
 const Reports = React.lazy(() => import("../pages/overview/Reports"));
 const Alerts = React.lazy(() => import("../pages/alerts/Alerts"));
 const InsightsAndBestPractices = React.lazy(
@@ -12,8 +18,7 @@ const InsightsAndBestPractices = React.lazy(
 const BestPractices = React.lazy(
   () => import("../pages/overview/BestPractices")
 );
-const Analytics = React.lazy(() => import("../Analytics"));
-const ProfilePage = React.lazy(() => import("../ProfilePage"));
+const Analytics = React.lazy(() => import("../pages/analytics/Analytics"));
 const DevicesLayout = React.lazy(() => import("../pages/devices/DeviceLayout"));
 const YourDevices = React.lazy(() => import("../pages/devices/YourDevices"));
 const Shopping = React.lazy(() => import("../pages/devices/Shopping"));
@@ -24,7 +29,6 @@ const SettingsLayout = React.lazy(
 const IamManagementLayout = React.lazy(
   () => import("../pages/overview/IamManagementLayout")
 );
-const AppShellLayout = React.lazy(() => import("../AppShellLayout"));
 const OverviewLayout = React.lazy(() => import("../layouts/OverviewLayout"));
 
 export default function ProtectedRoutes() {

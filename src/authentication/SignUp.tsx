@@ -1,8 +1,8 @@
 import { CheckCircle } from "lucide-react";
 import { useEffect, useState } from "react";
+import Footer from "../components/fragments/Footer";
+import Logo from "../hooks/Logo";
 import { preparePkceAndRedirect } from "../utils/authRedirects";
-import Footer from "./DeprecatedFooter";
-import Logo from "./hooks/Logo";
 
 const SignUpPage = () => {
   const [form, setForm] = useState({

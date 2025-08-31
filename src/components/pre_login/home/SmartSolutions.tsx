@@ -86,7 +86,7 @@ const domainDetails = [
 const SmartSolutions: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [manualSelection, setManualSelection] = useState(false);
-  const [names, setNames] = useState<string[]>([]);
+  //   const [names, setNames] = useState<string[]>([]);
 
   useEffect(() => {
     if (manualSelection) return;
@@ -106,9 +106,9 @@ const SmartSolutions: React.FC = () => {
 
   const activeItem = domainDetails[activeIndex];
 
-  useEffect(() => {
-    setNames(domainDetails.map((domain) => domain.name));
-  }, [domainDetails]);
+  //   useEffect(() => {
+  //     setNames(domainDetails.map((domain) => domain.name));
+  //   }, [domainDetails]);
 
   return (
     <section className="bg-gradient-to-br from-blue-50 to-white py-24 px-6">

@@ -115,14 +115,17 @@ const Header = () => {
 
           <div className="flex flex-col items-start space-y-2">
             <button
-              onClick={handleLogin}
-              disabled={!pkceReady}
+              onClick={() => {
+                preparePkceAndRedirect();
+              }}
               className="text-gray-700 font-medium hover:text-blue-600 transition-colors duration-300 ease-in-out cursor-pointer"
             >
               Sign in
             </button>
             <button
-              onClick={handleSignUp}
+              onClick={() => {
+                redirectToSignup();
+              }}
               className="cursor-pointer bg-blue-600 text-white px-4 py-2 rounded-md font-semibold shadow-md hover:bg-blue-700 transition-all duration-300"
             >
               Create account

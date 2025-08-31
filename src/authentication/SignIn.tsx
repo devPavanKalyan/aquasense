@@ -37,11 +37,11 @@ const SignIn: React.FC = () => {
     console.log(email);
   };
 
-  const goToCaptcha = () => {
-    setCaptchaOpen(true);
-    setVerificationOpen(false);
-    setPasswordSectionOpen(false);
-  };
+  //   const goToCaptcha = () => {
+  //     setCaptchaOpen(true);
+  //     setVerificationOpen(false);
+  //     setPasswordSectionOpen(false);
+  //   };
 
   const goToVerification = () => {
     setCaptchaOpen(false);

@@ -9,7 +9,7 @@ function Logo() {
         navigate("/");
       }}
     >
-      AquaSenze
+      AquaSense
     </h4>
   );
 }

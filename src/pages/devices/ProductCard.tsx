@@ -18,7 +18,7 @@ interface ProductCardProps {
   details: any;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, details }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div className="bg-white rounded-lg border border-gray-200 hover:shadow-md transition flex flex-col overflow-hidden group p-2 w-fit min-w-[140px] max-w-[200px] mx-auto">
       {/* Image */}
