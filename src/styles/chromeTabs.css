@@ -1,0 +1,8 @@
+.chrome-tab-mask {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="240" height="32" viewBox="0 0 240 32"><path d="M12 0C6 0 6 8 0 8v24h240V8c-6 0-6-8-12-8z" fill="white"/></svg>');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="240" height="32" viewBox="0 0 240 32"><path d="M12 0C6 0 6 8 0 8v24h240V8c-6 0-6-8-12-8z" fill="white"/></svg>');
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+}
