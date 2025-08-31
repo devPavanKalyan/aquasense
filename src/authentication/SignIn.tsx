@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import CaptchaModal from "../components/fragments/CaptchaModal";
 import SignInPasswordSection from "../components/fragments/SignInPasswordSection";
 import UserTypeForm from "../components/fragments/UserTypeForm";
@@ -63,8 +63,16 @@ const SignIn: React.FC = () => {
     setUserTypeForm(true);
   };
 
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 sm:px-6 md:px-10 lg:px-20 xl:px-32 py-10">
+    <div className=" min-h-screen bg-gray-50 flex items-center justify-center px-4 sm:px-6 md:px-10 lg:px-20 xl:px-32 py-10">
+      <div
+        onClick={() => navigate("/")}
+        className="fixed left-5 top-5 text-white h-10 w-30 bg-blue-600 rounded flex items-center justify-center cursor-pointer hover:bg-gray-800 transition"
+      >
+        Back to Home
+      </div>
       <div className="w-full min-w-[300px] max-w-xl md:max-w-5xl bg-white rounded-3xl shadow-2xl flex flex-col md:flex-row overflow-hidden min-h-[600px] hover:scale-105 transition-all duration-300 ease-in-out">
         <div className="hidden md:flex w-full md:w-1/2 bg-gradient-to-br from-sky-600 to-cyan-600 items-center justify-center relative p-4">
           <div className="absolute w-40 h-40 bg-white/10 rounded-full animate-pulse blur-3xl top-10 left-10"></div>
@@ -78,6 +86,7 @@ const SignIn: React.FC = () => {
             </p>
           </div>
         </div>
+
         <div className="w-full md:w-1/2 p-8 flex flex-col justify-center min-w-0 min-h-[500px] flex-1">
           {/* Top Section */}
           <h2 className="text-3xl font-bold text-gray-800 text-center mt-5">

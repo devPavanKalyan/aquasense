@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { redirectToSignup } from "../../../utils/authRedirects";
+import { scrollToSection } from "../../../utils/refs";
 
 const HeroSection: React.FC = () => {
   return (
@@ -34,18 +36,24 @@ const HeroSection: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
         >
-          <a
-            href="http://localhost:8080/signup?request_type=register"
+          <button
             className="px-8 py-4 bg-blue-600 text-white rounded-xl shadow-md hover:bg-blue-700 transition-all duration-300 font-semibold text-base sm:text-lg"
+            onClick={() => {
+              redirectToSignup();
+            }}
           >
             Start Free Trial
-          </a>
-          <a
-            href="/versewave/contact"
+          </button>
+
+          {/* Attach the ref correctly here */}
+          <button
+            onClick={() => {
+              scrollToSection("contact");
+            }}
             className="px-8 py-4 border-2 border-blue-600 text-blue-600 rounded-xl hover:bg-blue-50 transition-all duration-300 font-semibold text-base sm:text-lg"
           >
             Contact Sales
-          </a>
+          </button>
         </motion.div>
       </div>
     </section>

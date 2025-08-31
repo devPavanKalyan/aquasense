@@ -2,6 +2,7 @@
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { VLogoLoading } from "../../hooks/VLogoLoading";
 import {
   preparePkceAndRedirect,
   redirectToSignup
@@ -55,11 +56,17 @@ const Header = () => {
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         {/* Logo and Nav */}
         <div className="flex items-center space-x-10 max-[870px]:space-x-6">
-          <div className="flex items-center gap-4">
-            <span
-              onClick={() => navigate("/")}
-              className="text-2xl text-blue-600 font-bold cursor-pointer"
-            >
+          <div
+            className="flex items-center"
+            onClick={() => {
+              navigate("/");
+              scrollToSection("home");
+            }}
+          >
+            <div className="w-9 h-9 flex items-center justify-center">
+              <VLogoLoading />
+            </div>
+            <span className="text-2xl text-blue-600 font-bold cursor-pointer">
               AquaSense
             </span>
           </div>

@@ -1,5 +1,6 @@
 import { CheckCircle } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/fragments/Footer";
 import Logo from "../hooks/Logo";
 import { preparePkceAndRedirect } from "../utils/authRedirects";
@@ -43,15 +44,25 @@ const SignUpPage = () => {
     alert("Verification link or OTP sent to email");
   };
 
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-[100vh] flex flex-col justify-between bg-gray-100 px-6 py-8">
-      {/* Logo */}
-      <div className="flex justify-center mt-8 mb-[100px]">
-        <Logo />
+    <div className="min-h-screen flex flex-col justify-between bg-gray-100 px-6 py-8">
+      <div
+        onClick={() => navigate("/")}
+        className="fixed left-5 top-5 text-white h-10 w-30 bg-blue-600 rounded flex items-center justify-center cursor-pointer hover:bg-gray-800 transition"
+      >
+        Back to Home
       </div>
 
       {/* Sign Up Card */}
       <div className="flex justify-center px-10">
+        <div
+          onClick={() => navigate("/")}
+          className="fixed left-5 top-5 text-white h-10 w-30 bg-blue-600 rounded flex items-center justify-center cursor-pointer hover:bg-gray-800 transition"
+        >
+          Back to Home
+        </div>
         <div className="w-full max-w-[900px] bg-white shadow-xl rounded-xl flex flex-col md:flex-row overflow-hidden">
           {/* Sidebar */}
           <div className="hidden md:flex w-full md:w-1/2 bg-gradient-to-br from-sky-600 to-cyan-600 items-center justify-center relative p-4">

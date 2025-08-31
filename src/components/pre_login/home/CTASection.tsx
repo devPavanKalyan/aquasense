@@ -1,4 +1,5 @@
 import React from "react";
+import { redirectToSignup } from "../../../utils/authRedirects";
 
 const CTASection: React.FC = () => {
   return (
@@ -16,18 +17,20 @@ const CTASection: React.FC = () => {
         </p>
 
         <div className="mt-10 flex justify-center gap-6 flex-wrap">
-          <a
-            href="http://localhost:8080/signup?request_type=register"
+          <button
+            onClick={() => {
+              redirectToSignup();
+            }}
             className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-xl text-base font-semibold transition duration-300 shadow-lg"
           >
             Go to Dashboard
-          </a>
-          <a
+          </button>
+          {/* <a
             href="/contact"
             className="border-2 border-cyan-600 text-cyan-600 hover:bg-cyan-50 px-8 py-4 rounded-xl text-base font-semibold transition duration-300"
           >
             Talk to Sales
-          </a>
+          </a> */}
         </div>
 
         <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-lg mx-auto">

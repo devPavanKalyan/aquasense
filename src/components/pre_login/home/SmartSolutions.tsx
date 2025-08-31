@@ -124,9 +124,9 @@ const SmartSolutions: React.FC = () => {
             Versewave evolves with your needs, delivering real-time insights and
             tangible impact.
           </p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300">
+          {/* <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition duration-300">
             Request a Demo
-          </button>
+          </button> */}
 
           <div className="mt-10">
             <h4 className="text-md font-semibold text-gray-800 mb-3">
@@ -169,12 +169,12 @@ const SmartSolutions: React.FC = () => {
           <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
             <p className="text-sm italic text-gray-700">{activeItem.impact}</p>
           </div>
-          <a
+          {/* <a
             href="#"
             className="inline-block mt-2 text-blue-600 hover:text-blue-800 font-medium text-sm"
           >
             Learn more about {activeItem.name} →
-          </a>
+          </a> */}
         </div>
       </div>
     </section>

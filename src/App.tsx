@@ -16,7 +16,6 @@ import Support from "./components/pre_login/Support";
 
 import "./App.css";
 import SignInPage from "./authentication/SignIn";
-import Test from "./authentication/Test";
 import NoGoalSetUp from "./components/business/NoGoalSetUp";
 import Footer from "./components/post_login/PostSignInFooter";
 import ProfilePage from "./components/post_login/ProfilePage";
@@ -80,7 +79,6 @@ export default function AppContent() {
               <Route path="/docs" element={<Docs />} />
               <Route path="/support" element={<Support />} />
               <Route path="/oauth/authorize" element={<SignInPage />} />
-              <Route path="/test" element={<Test />} />
             </>
           )}
 

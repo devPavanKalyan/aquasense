@@ -58,19 +58,20 @@ const supportOptions = [
     title: "Call Us",
     desc: "Reach our 24/7 support line for urgent issues or quick guidance.",
     icon: <Phone className="h-8 w-8 text-blue-600" />,
-    value: "+1 (800) 555-1234"
+    value: "+91 7995797366"
   },
   {
     title: "Email Support",
     desc: "Send us detailed questions, and we’ll respond within 1 business day.",
     icon: <Mail className="h-8 w-8 text-blue-600" />,
-    value: "support@aquasense.io"
+    value: "aquasensethefuture@gmail.com"
   },
   {
     title: "Live Chat",
     desc: "Talk to our support team directly from the AquaSense dashboard.",
     icon: <MessageSquareText className="h-8 w-8 text-blue-600" />,
-    value: "Available in-app"
+    // value: "Available in-app"
+    value: "Coming soon..."
   }
 ];
 
