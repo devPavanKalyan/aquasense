@@ -1,8 +1,8 @@
 import { generatePkceChallenge } from "./pkce";
 
-const OAUTH_BASE_URL = "http://localhost:5200/oauth/authorize";
+const OAUTH_BASE_URL = "https://aquasense-six.vercel.app/oauth/authorize";
 const CLIENT_ID = "aquasense-client-id";
-const REDIRECT_URI = "http://localhost:5200/dashboard";
+const REDIRECT_URI = "https://aquasense-six.vercel.app/dashboard";
 const RESPONSE_TYPE = "code";
 const CODE_CHALLENGE_METHOD = "SHA-256";
 const FROM = "frontend"; // You can adjust this value as needed.
@@ -58,5 +58,6 @@ export const preparePkceAndRedirect = async (
 };
 
 export const redirectToSignup = () => {
-  window.location.href = "http://localhost:5200/signup?request_type=register";
+  window.location.href =
+    "https://aquasense-six.vercel.app/signup?request_type=register";
 };
