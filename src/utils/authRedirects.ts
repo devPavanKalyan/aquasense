@@ -1,24 +1,29 @@
 import { generatePkceChallenge } from "./pkce";
 
-const OAUTH_BASE_URL = "http://localhost:5200/oauth/authorize";
+const mode = import.meta.env.MODE;
+
+let host =
+  mode === "production"
+    ? "https://aquasense-six.vercel.app"
+    : "http://localhost:5200";
+
+const OAUTH_BASE_URL = `${host}/oauth/authorize`;
 const CLIENT_ID = "aquasense-client-id";
-const REDIRECT_URI = "http://localhost:5200/dashboard";
+const REDIRECT_URI = `${host}/dashboard`;
 const RESPONSE_TYPE = "code";
 const CODE_CHALLENGE_METHOD = "SHA-256";
-const FROM = "frontend"; // You can adjust this value as needed.
-const PAGE = "resolve"; // This parameter is also required.
-const BACKWARDS_COMPATIBLE = "true"; // This is a string value.
+const FROM = "frontend";
+const PAGE = "resolve";
+const BACKWARDS_COMPATIBLE = "true";
 
 export const preparePkceAndRedirect = async (
   shouldRedirect: boolean = true
 ) => {
   try {
-    // Check if already generated
     let codeVerifier = sessionStorage.getItem("pkce_verifier");
     let codeChallenge = sessionStorage.getItem("pkce_challenge");
     let state = sessionStorage.getItem("pkce_state");
 
-    // Generate only if missing
     if (!codeVerifier || !codeChallenge) {
       const pkce = await generatePkceChallenge();
       codeVerifier = pkce.codeVerifier;
@@ -58,5 +63,5 @@ export const preparePkceAndRedirect = async (
 };
 
 export const redirectToSignup = () => {
-  window.location.href = "http://localhost:5200/signup?request_type=register";
+  window.location.href = `${host}/signup?request_type=register`;
 };
