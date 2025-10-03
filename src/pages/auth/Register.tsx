@@ -1,5 +1,4 @@
 import axios from "axios";
-import { ArrowLeft } from "lucide-react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CaptchaModal from "../../components/fragments/CaptchaModal";
@@ -85,7 +84,7 @@ const Register: React.FC = () => {
 
       if (response.status === 200) {
         console.log("Basic details submitted successfully");
-        goToVerification(); // ✅ Now go to verification step
+        goToVerification();
       } else {
         console.error(response.data?.message || "Submission failed");
       }
@@ -97,71 +96,46 @@ const Register: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen md:bg-gray-50 flex items-center justify-center md:px-8 lg:px-12 xl:px-16 py-10">
+    <div className="min-h-screen flex items-center justify-center">
       <div
         onClick={() => navigate("/")}
-        className="fixed left-5 top-5 flex items-center gap-2 px-4 py-2 
-               bg-blue-600 text-white rounded-xl shadow-md cursor-pointer 
-               hover:bg-blue-700 hover:shadow-lg active:scale-95 
-               transition-all duration-300"
+        className="fixed left-5 top-5 cursor-pointer text-2xl text-black 
+             transition-transform duration-300 hover:scale-105"
+        style={{ fontFamily: "'Pacifico', cursive" }}
       >
-        <ArrowLeft className="w-5 h-5" />
-        <span className="font-medium">Back</span>
+        AquaSense
       </div>
 
-      <div className="w-full min-w-[300px] max-w-xl md:max-w-5xl bg-white md:rounded-3xl md:shadow-2xl flex flex-col md:flex-row overflow-hidden min-h-[600px] hover:scale-105 transition-all duration-300 ease-in-out">
-        {/* Left Panel */}
-        <div className="hidden md:flex w-full md:w-1/2 bg-gradient-to-br from-blue-600 to-cyan-500 text-white items-center justify-center relative p-8">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-60 h-60 bg-white/20 rounded-full blur-2xl animate-[spin_12s_linear_infinite]"></div>
+      {registerFormOpen && (
+        <RegisterForm
+          isOpen={registerFormOpen}
+          fullName={fullName}
+          email={email}
+          agreed={agreed}
+          handleAgreedChange={handleAgreeChange}
+          handleEmailChange={handleEmailChange}
+          handleFullChange={handleFullChange}
+          onSubmit={handleSubmit}
+        />
+      )}
 
-          <div className="relative z-10 text-center space-y-4">
-            <h2 className="text-4xl font-bold leading-tight">
-              Water Quality Analytics
-            </h2>
-            <p className="text-base font-medium opacity-90">
-              Real-time insights powered by Data Science, AI & IoT
-            </p>
-          </div>
-        </div>
+      {verificationOpen && (
+        <VerificationUI
+          type="REGISTER"
+          isOpen={verificationOpen}
+          onClose={goBackToRegisterForm}
+          userEmail={email}
+          onSubmit={goToPasswordSection}
+        />
+      )}
 
-        {/* Right Panel */}
-        <div className="flex-1 w-full p-5 flex items-center justify-center">
-          {registerFormOpen && (
-            <RegisterForm
-              isOpen={registerFormOpen}
-              fullName={fullName}
-              email={email}
-              agreed={agreed}
-              handleAgreedChange={handleAgreeChange}
-              handleEmailChange={handleEmailChange}
-              handleFullChange={handleFullChange}
-              onSubmit={handleSubmit}
-            />
-          )}
+      {passwordSectionOpen && <PasswordSection isOpen={passwordSectionOpen} />}
 
-          {verificationOpen && (
-            <VerificationUI
-              type="REGISTER"
-              isOpen={verificationOpen}
-              onClose={goBackToRegisterForm}
-              userEmail={email}
-              onSubmit={goToPasswordSection}
-            />
-          )}
-
-          {passwordSectionOpen && (
-            <PasswordSection isOpen={passwordSectionOpen} />
-          )}
-        </div>
-      </div>
-
-      {/* Captcha Modal */}
       {captchaOpen && (
         <CaptchaModal
           isOpen={captchaOpen}
           onClose={goBackToRegisterForm}
-          goToVerification={submitDetailsAfterCaptcha} // ✅ Submit details after captcha
+          goToVerification={submitDetailsAfterCaptcha}
         />
       )}
     </div>

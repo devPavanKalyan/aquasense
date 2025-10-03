@@ -58,146 +58,139 @@ const UserTypeForm: React.FC<Props> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto px-4 py-6">
-      <div id="user_type_input">
-        <p className="text-md font-medium text-gray-700 mb-2">
-          Select User Type:
-        </p>
+    <form
+      onSubmit={handleSubmit}
+      className="w-full max-w-2xl mx-auto bg-white
+          px-6 sm:px-8 py-8 sm:py-10 
+          transition-all duration-300"
+    >
+      <h2 className="text-2xl sm:text-3xl font-bold text-zinc-800 mb-10">
+        Sign in to <span className="text-[#4B0082]">AquaSense</span>
+      </h2>
 
+      <div id="user_type_input" className="mb-5">
+        <p className="text-zinc-700 font-medium mb-2">Select User Type:</p>
         <div className="flex gap-6">
           <label className="flex items-center gap-2 cursor-pointer">
             <input
-              className="form-radio text-blue-600"
+              className="form-radio text-[#4B0082]"
               type="radio"
               name="user_type"
               value="owner"
               checked={userType === "owner"}
               onChange={handleUserTypeChange}
             />
-            <span className="text-gray-700 text-sm">Root User</span>
+            <span className="text-zinc-700 text-sm">Root User</span>
           </label>
 
           <label className="flex items-center gap-2 cursor-pointer">
             <input
-              className="form-radio text-blue-600"
+              className="form-radio text-[#4B0082]"
               type="radio"
               name="user_type"
               value="staff"
               checked={userType === "staff"}
               onChange={handleUserTypeChange}
             />
-            <span className="text-gray-700 text-sm">Staff</span>
+            <span className="text-zinc-700 text-sm">Staff</span>
           </label>
         </div>
 
         {error && (
-          <div className="flex justify-center items-center text-red-800 font-semibold text-[14px] mt-3 bg-orange-100 p-2">
+          <div className="flex justify-center items-center text-red-800 font-semibold text-[14px] mt-3 bg-orange-100 p-2 rounded">
             {error}
           </div>
         )}
+      </div>
 
-        {userType === "owner" && (
-          <div className="mt-4" id="ownerInput">
-            <label className="block">
-              <span className="text-gray-700 text-sm font-medium">
-                Email (for Owner)
-              </span>
-              <div className="relative mt-1">
-                <Mail className="absolute top-3 left-3 w-5 h-5 text-gray-400" />
-                <input
-                  className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => handleChangeEmail(e.target.value)}
-                  placeholder="owner@example.com"
-                  required
-                />
-              </div>
-            </label>
+      {userType === "owner" && (
+        <label className="block">
+          <span className="text-zinc-700 text-sm font-medium">
+            Email (for Owner)
+          </span>
+          <div className="relative mt-1">
+            <Mail className="absolute top-3 left-3 w-5 h-5 text-zinc-400" />
+            <input
+              className="w-full pl-10 pr-4 py-2.5 border border-zinc-300 rounded-lg 
+                     focus:outline-none focus:border-2 focus:border-[#4B0082] text-sm"
+              id="email"
+              name="email"
+              type="email"
+              value={email}
+              onChange={(e) => handleChangeEmail(e.target.value)}
+              placeholder="owner@example.com"
+              required
+            />
           </div>
-        )}
+        </label>
+      )}
 
-        {userType === "staff" && (
-          <div className="mt-4" id="staffInput">
-            <label className="block">
-              <span className="text-gray-700 text-sm font-medium">
-                Staff ID (12-digit)
-              </span>
-              <div className="relative mt-1">
-                <UserCog className="absolute top-3 left-3 w-5 h-5 text-gray-400" />
-                <input
-                  className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                  id="staffId"
-                  name="staffId"
-                  type="text"
-                  pattern="\d{12}"
-                  maxLength={12}
-                  value={staffId}
-                  onChange={(e) => setStaffId(e.target.value)}
-                  placeholder="123456789012"
-                  required
-                />
-              </div>
-            </label>
+      {userType === "staff" && (
+        <label className="block">
+          <span className="text-zinc-700 text-sm font-medium">
+            Staff ID (12-digit)
+          </span>
+          <div className="relative mt-1">
+            <UserCog className="absolute top-3 left-3 w-5 h-5 text-zinc-400" />
+            <input
+              className="w-full pl-10 pr-4 py-2.5 border border-zinc-300 rounded-lg 
+                     focus:outline-none focus:border-2 focus:border-[#4B0082] text-sm"
+              id="staffId"
+              name="staffId"
+              type="text"
+              pattern="\d{12}"
+              maxLength={12}
+              value={staffId}
+              onChange={(e) => setStaffId(e.target.value)}
+              placeholder="123456789012"
+              required
+            />
           </div>
-        )}
+        </label>
+      )}
 
+      <button
+        type="submit"
+        className="mt-6 px-6 py-3 bg-[#4B0082] text-white font-semibold rounded-lg 
+               hover:bg-[#3A0066] transition shadow-md"
+        onClick={handleSubmit}
+      >
+        Continue
+      </button>
+
+      <div className="flex items-center gap-2 my-6">
+        <hr className="flex-grow border-zinc-300" />
+        <span className="text-zinc-400 text-sm font-medium">OR</span>
+        <hr className="flex-grow border-zinc-300" />
+      </div>
+
+      <div className="text-center">
+        <p className="text-sm text-zinc-600 mb-2 font-medium">
+          Create AquaSense account
+        </p>
         <button
-          type="submit"
-          className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          onClick={handleSubmit}
+          type="button"
+          className="inline-block bg-[#FFC312] text-[#4B0082] font-semibold text-sm px-5 py-2 
+                 rounded-md hover:bg-[#E0B00F] transition-all duration-300 ease-in-out"
+          onClick={() => navigate("/signup?request_type=register")}
         >
-          Continue
+          Sign Up
         </button>
       </div>
 
-      {/* Divider */}
-      <div className="flex items-center my-6">
-        <hr className="flex-grow border-gray-300" />
-        <span className="mx-2 text-gray-500 text-sm font-medium">OR</span>
-        <hr className="flex-grow border-gray-300" />
-      </div>
-
-      {/* Signup Section */}
-      <div className="text-center">
-        <p className="text-sm text-gray-600 mb-2 font-medium">
-          Create AquaSense account
-        </p>
-        <a href="/signup?request_type=register">
-          <button
-            type="button"
-            className="inline-block bg-green-600 text-white font-semibold text-sm px-5 py-2 rounded-md hover:bg-green-700 transition-all duration-300 ease-in-out"
-            onClick={() => {
-              navigate("/signup?request_type=register");
-            }}
-          >
-            Sign Up
-          </button>
+      <p className="text-xs text-zinc-500 text-center leading-relaxed mt-5">
+        By continuing, you agree to the AquaSense Customer Agreement and the{" "}
+        <a className="text-[#4B0082] hover:underline font-medium" href="#">
+          Privacy Notice
         </a>
-      </div>
+        . This site uses essential cookies. See our{" "}
+        <a className="text-[#4B0082] hover:underline font-medium" href="#">
+          Cookie Notice
+        </a>
+        .
+      </p>
     </form>
   );
 };
 
 export default UserTypeForm;
-{
-  /* <label
-              className="block text-sm font-medium text-gray-700"
-              htmlFor="email"
-            >
-              Email (for Owner)
-            </label>
-            <input
-              className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              id="email"
-              name="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="owner@example.com"
-              required
-            />
-             */
-}

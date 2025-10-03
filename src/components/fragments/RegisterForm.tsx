@@ -55,68 +55,65 @@ const RegisterForm: React.FC<Props> = ({
   };
 
   const handleSubmit = () => {
-    if (isSubmitting) return; // Prevent multiple submits
+    if (isSubmitting) return;
     if (validate()) {
       setIsSubmitting(true);
       onSubmit();
-      // You can setIsSubmitting(false) after onSubmit completes (if async)
     }
   };
 
   return (
-    <div className={`${isOpen ? "block" : "hidden"} w-full px-4 py-6`}>
-      <h2 className="text-2xl font-bold text-gray-800 mb-10 text-center">
-        Sign up for <span className="text-blue-600">AquaSense</span>
+    <div
+      className={`${isOpen ? "block" : "hidden"} 
+          w-full max-w-2xl mx-auto bg-white
+          px-6 sm:px-8 py-8 sm:py-10 
+          transition-all duration-300`}
+    >
+      <h2 className="text-2xl sm:text-3xl font-bold text-zinc-800 mb-10">
+        Sign in to <span className="text-[#4B0082]">AquaSense</span>
       </h2>
 
-      {/* Full Name */}
       <label className="block mb-5">
-        <span className="text-gray-700 text-sm font-medium">
+        <span className="text-zinc-700 text-sm font-medium">
           What should we call you?
         </span>
         <div className="relative mt-1">
-          <User className="absolute top-3 left-3 w-5 h-5 text-gray-400" />
+          <User className="absolute top-3 left-3 w-5 h-5 text-zinc-400" />
           <input
-            className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            className="w-full pl-10 pr-4 py-2.5 border border-zinc-300 rounded-lg 
+                   focus:outline-none focus:border-2 focus:border-[#4B0082] text-sm"
             placeholder="Your name"
-            name="fullName"
-            autoComplete="on"
-            type="text"
             value={fullName}
             onChange={(e) => handleFullChange(e.target.value)}
             disabled={isSubmitting}
           />
         </div>
         {errors.fullName && (
-          <p className="text-sm text-red-600 mt-1">{errors.fullName}</p>
+          <p className="text-sm text-[#FFC312] mt-1">{errors.fullName}</p>
         )}
       </label>
 
-      {/* Email */}
       <label className="block mb-5">
-        <span className="text-gray-700 text-sm font-medium">Email address</span>
+        <span className="text-zinc-700 text-sm font-medium">Email address</span>
         <div className="relative mt-1">
-          <Mail className="absolute top-3 left-3 w-5 h-5 text-gray-400" />
+          <Mail className="absolute top-3 left-3 w-5 h-5 text-zinc-400" />
           <input
-            className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            className="w-full pl-10 pr-4 py-2.5 border border-zinc-300 rounded-lg 
+                   focus:outline-none focus:border-2 focus:border-[#4B0082] text-sm"
             placeholder="you@example.com"
-            type="email"
-            name="email"
-            autoComplete="on"
             value={email}
             onChange={(e) => handleEmailChange(e.target.value)}
             disabled={isSubmitting}
           />
         </div>
         {errors.email && (
-          <p className="text-sm text-red-600 mt-1">{errors.email}</p>
+          <p className="text-sm text-[#FFC312] mt-1">{errors.email}</p>
         )}
       </label>
 
-      {/* Terms */}
-      <div className="flex items-start sm:items-center gap-2 text-sm text-gray-700 m-1">
+      <div className="flex items-start sm:items-center gap-2 text-sm text-zinc-700 m-1">
         <input
-          className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+          className="h-4 w-4 text-[#4B0082] border-zinc-300 rounded focus:ring-[#4B0082]"
           type="checkbox"
           checked={agreed}
           onChange={(e) => handleAgreedChange(e.target.checked)}
@@ -124,42 +121,38 @@ const RegisterForm: React.FC<Props> = ({
         />
         <span>
           I agree to the{" "}
-          <a href="#" className="text-blue-600 hover:underline font-medium">
+          <a href="#" className="text-[#4B0082] hover:underline font-medium">
             terms and privacy policy
           </a>
         </span>
       </div>
-
       {errors.agreed && (
-        <p className="text-sm text-red-600 m-1 mb-5">{errors.agreed}</p>
+        <p className="text-sm text-[#FFC312] m-1 mb-5">{errors.agreed}</p>
       )}
 
-      {/* Submit */}
       <button
-        className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="mt-6 px-6 py-3 bg-[#4B0082] text-white font-semibold rounded-lg 
+               hover:bg-[#3A0066] transition shadow-md"
         onClick={handleSubmit}
         disabled={isSubmitting}
       >
         Verify Email Address
       </button>
 
-      {/* Separator */}
       <div className="flex items-center gap-2 my-4">
-        <hr className="flex-grow border-gray-300" />
-        <span className="text-gray-500 text-sm font-medium">OR</span>
-        <hr className="flex-grow border-gray-300" />
+        <hr className="flex-grow border-zinc-300" />
+        <span className="text-zinc-400 text-sm font-medium">OR</span>
+        <hr className="flex-grow border-zinc-300" />
       </div>
 
-      {/* Sign In */}
       <div className="text-center">
-        <p className="text-sm text-gray-600 mb-2 font-medium">
+        <p className="text-sm text-zinc-600 mb-2 font-medium">
           Already have an AquaSense account?
         </p>
         <button
-          className="inline-block bg-green-600 text-white font-semibold text-sm px-5 py-2 rounded-md hover:bg-green-700 transition-all duration-300 ease-in-out"
-          onClick={() => {
-            preparePkceAndRedirect();
-          }}
+          className="inline-block bg-[#FFC312] text-[#4B0082] font-semibold text-sm px-5 py-2 
+                 rounded-md hover:bg-[#E0B00F] transition-all duration-300 ease-in-out"
+          onClick={() => preparePkceAndRedirect()}
           disabled={isSubmitting}
         >
           Sign In
