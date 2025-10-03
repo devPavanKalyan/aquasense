@@ -25,12 +25,6 @@ const CTASection: React.FC = () => {
           >
             Go to Dashboard
           </button>
-          {/* <a
-            href="/contact"
-            className="border-2 border-cyan-600 text-cyan-600 hover:bg-cyan-50 px-8 py-4 rounded-xl text-base font-semibold transition duration-300"
-          >
-            Talk to Sales
-          </a> */}
         </div>
 
         <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-lg mx-auto">

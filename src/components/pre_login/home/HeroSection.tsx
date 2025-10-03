@@ -45,7 +45,6 @@ const HeroSection: React.FC = () => {
             Start Free Trial
           </button>
 
-          {/* Attach the ref correctly here */}
           <button
             onClick={() => {
               scrollToSection("contact");

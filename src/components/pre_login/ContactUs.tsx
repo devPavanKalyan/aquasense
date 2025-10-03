@@ -100,7 +100,6 @@ const ContactUs: React.FC = () => {
     message: ""
   });
 
-  // Correct handleChange function
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {

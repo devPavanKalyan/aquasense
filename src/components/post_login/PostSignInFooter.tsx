@@ -1,13 +1,14 @@
 import clsx from "clsx";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { VLogoLoading } from "../../hooks/VLogoLoading";
 
 export default function Footer() {
   const { isAuthenticated } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   return (
-    <footer className="border-t border-blue-100 pt-16 pb-12 px-6 text-gray-800">
+    <footer className="bg-gradient-to-t from-[#f5f7ff] to-white pt-16 pb-12 px-6 text-gray-800 shadow-inner">
       <div
         className={clsx(
           isAuthenticated
@@ -15,132 +16,97 @@ export default function Footer() {
             : "flex items-center justify-center"
         )}
       >
-        {/* Company Info */}
-        <div>
-          <div className="flex items-center gap-3 mb-5">
-            <div className="w-9 h-9 flex items-center justify-center">
-              <VLogoLoading />
-            </div>
-            <h3 className="text-xl font-extrabold text-blue-700 tracking-wide">
-              AquaSense
-            </h3>
+        <div className="flex flex-col items-start">
+          <div
+            onClick={() => navigate("/")}
+            className="flex cursor-pointer text-3xl font-extrabold text-[#4B0082] mb-2 hover:text-[#6F00FF] transition-colors"
+            style={{ fontFamily: "'Pacifico', cursive" }}
+          >
+            AquaSense
           </div>
           <p className="text-sm text-gray-600 leading-relaxed">
-            Empowering smart water systems with AI, IoT, and Data Science.
+            Empowering smart water systems with{" "}
+            <span className="font-semibold text-[#4B0082]">AI</span>,{" "}
+            <span className="font-semibold text-teal-600">IoT</span>, and{" "}
+            <span className="font-semibold text-cyan-600">Data Science</span>.
             Designed for aquaculture, agriculture, and urban utilities.
           </p>
         </div>
 
-        {/* Show these sections only if authenticated */}
         {isAuthenticated && (
           <>
-            {/* Navigation */}
             <div>
-              <h4 className="text-sm font-semibold mb-4 text-blue-700 uppercase tracking-wide">
+              <h4 className="text-sm font-bold mb-4 text-[#4B0082] uppercase tracking-wide">
                 Navigation
               </h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="/" className="hover:text-blue-600 transition">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/monitoring"
-                    className="hover:text-blue-600 transition"
-                  >
-                    Monitoring
-                  </a>
-                </li>
-                <li>
-                  <a href="/devices" className="hover:text-blue-600 transition">
-                    Devices
-                  </a>
-                </li>
-                <li>
-                  <a href="/reports" className="hover:text-blue-600 transition">
-                    Reports
-                  </a>
-                </li>
-                <li>
-                  <a href="/alerts" className="hover:text-blue-600 transition">
-                    Alerts
-                  </a>
-                </li>
+              <ul className="space-y-3 text-sm">
+                {["Home", "Monitoring", "Devices", "Reports", "Alerts"].map(
+                  (item) => (
+                    <li key={item}>
+                      <a
+                        href={`/${item.toLowerCase()}`}
+                        className="hover:text-[#6F00FF] transition-colors font-medium"
+                      >
+                        {item}
+                      </a>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
 
-            {/* Support */}
             <div>
-              <h4 className="text-sm font-semibold mb-4 text-blue-700 uppercase tracking-wide">
+              <h4 className="text-sm font-bold mb-4 text-[#4B0082] uppercase tracking-wide">
                 Support
               </h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a
-                    href="/insights"
-                    className="hover:text-blue-600 transition"
-                  >
-                    Insights
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/best-practices"
-                    className="hover:text-blue-600 transition"
-                  >
-                    Best Practices
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/iam-management"
-                    className="hover:text-blue-600 transition"
-                  >
-                    IAM Management
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="mailto:support@aquasense.com"
-                    className="hover:text-blue-600 transition"
-                  >
-                    Contact Support
-                  </a>
-                </li>
+              <ul className="space-y-3 text-sm">
+                {[
+                  { name: "Insights", link: "/insights" },
+                  { name: "Best Practices", link: "/best-practices" },
+                  { name: "IAM Management", link: "/iam-management" },
+                  {
+                    name: "Contact Support",
+                    link: "mailto:support@aquasense.com"
+                  }
+                ].map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.link}
+                      className="hover:text-[#6F00FF] transition-colors font-medium"
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* Legal */}
             <div>
-              <h4 className="text-sm font-semibold mb-4 text-blue-700 uppercase tracking-wide">
+              <h4 className="text-sm font-bold mb-4 text-[#4B0082] uppercase tracking-wide">
                 Legal
               </h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="/privacy" className="hover:text-blue-600 transition">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="/terms" className="hover:text-blue-600 transition">
-                    Terms of Service
-                  </a>
-                </li>
-                <li>
-                  <a href="/cookies" className="hover:text-blue-600 transition">
-                    Cookie Policy
-                  </a>
-                </li>
+              <ul className="space-y-3 text-sm">
+                {[
+                  { name: "Privacy Policy", link: "/privacy" },
+                  { name: "Terms of Service", link: "/terms" },
+                  { name: "Cookie Policy", link: "/cookies" }
+                ].map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.link}
+                      className="hover:text-[#6F00FF] transition-colors font-medium"
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           </>
         )}
       </div>
 
-      {/* Footer bottom */}
-      <div className="border-t border-blue-100 mt-14 pt-6 text-center text-xs text-gray-500">
+      <div className="pt-10 text-center text-xs text-gray-500 border-t border-gray-200 mt-10">
         <p>
           &copy; {new Date().getFullYear()} AquaSense Inc. All rights reserved.
         </p>

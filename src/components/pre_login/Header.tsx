@@ -1,8 +1,6 @@
-// components/Header.tsx
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { VLogoLoading } from "../../hooks/VLogoLoading";
 import {
   preparePkceAndRedirect,
   redirectToSignup
@@ -33,7 +31,7 @@ const Header = () => {
       },
       {
         root: null,
-        rootMargin: "0px 0px -50% 0px", // triggers when section is near center
+        rootMargin: "0px 0px -50% 0px",
         threshold: 0.3
       }
     );
@@ -52,26 +50,17 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="p-4 bg-white shadow-md border-b border-gray-200 mb-1 fixed w-full top-0 z-50">
+    <header className="p-4 bg-white border-b border-gray-200 mb-1 fixed w-full top-0 z-50">
       <div className="flex items-center justify-between max-w-7xl mx-auto">
-        {/* Logo and Nav */}
         <div className="flex items-center space-x-10 max-[870px]:space-x-6">
           <div
-            className="flex items-center"
-            onClick={() => {
-              navigate("/");
-              scrollToSection("home");
-            }}
+            onClick={() => navigate("/")}
+            className="flex cursor-pointer text-3xl font-extrabold text-[#4B0082] mb-2 hover:text-[#6F00FF] transition-colors"
+            style={{ fontFamily: "'Pacifico', cursive" }}
           >
-            <div className="w-9 h-9 flex items-center justify-center">
-              <VLogoLoading />
-            </div>
-            <span className="text-2xl text-blue-600 font-bold cursor-pointer">
-              AquaSense
-            </span>
+            AquaSense
           </div>
 
-          {/* Desktop Nav */}
           <div className="hidden min-[890px]:block">
             <NavItems
               scrollToSection={scrollToSection}
@@ -80,7 +69,6 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Desktop Buttons */}
         <div className="hidden min-[890px]:flex space-x-4">
           <button
             onClick={() => {
@@ -100,7 +88,6 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Menu Toggle */}
         <div className="min-[890px]:hidden">
           <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -108,14 +95,13 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Items */}
       {isMenuOpen && (
         <div className="min-[890px]:hidden mt-3 space-y-3 px-4">
           <NavItems
             mobile
             scrollToSection={(key) => {
               scrollToSection(key);
-              setIsMenuOpen(false); // close menu after click
+              setIsMenuOpen(false);
             }}
             activeSection={activeSection}
           />
