@@ -1,3 +1,4 @@
+import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import CaptchaModal from "../components/fragments/CaptchaModal";
@@ -66,14 +67,19 @@ const SignIn: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className=" min-h-screen bg-gray-50 flex items-center justify-center px-4 sm:px-6 md:px-10 lg:px-20 xl:px-32 py-10">
+    <div className=" min-h-screen md:bg-gray-50 flex items-center justify-center px-4 sm:px-6 md:px-10 lg:px-20 xl:px-32 py-10">
       <div
         onClick={() => navigate("/")}
-        className="fixed left-5 top-5 text-white h-10 w-30 bg-blue-600 rounded flex items-center justify-center cursor-pointer hover:bg-gray-800 transition"
+        className="fixed left-5 top-5 flex items-center gap-2 px-4 py-2 
+             bg-blue-600 text-white rounded-xl shadow-md cursor-pointer 
+             hover:bg-blue-700 hover:shadow-lg active:scale-95 
+             transition-all duration-300"
       >
-        Back to Home
+        <ArrowLeft className="w-5 h-5" />
+        <span className="font-medium">Back</span>
       </div>
-      <div className="w-full min-w-[300px] max-w-xl md:max-w-5xl bg-white rounded-3xl shadow-2xl flex flex-col md:flex-row overflow-hidden min-h-[600px] hover:scale-105 transition-all duration-300 ease-in-out">
+
+      <div className="w-full min-w-[300px] max-w-xl md:max-w-5xl bg-white md:rounded-3xl md:shadow-2xl flex flex-col md:flex-row overflow-hidden min-h-[600px] hover:scale-105 transition-all duration-300 ease-in-out">
         <div className="hidden md:flex w-full md:w-1/2 bg-gradient-to-br from-sky-600 to-cyan-600 items-center justify-center relative p-4">
           <div className="absolute w-40 h-40 bg-white/10 rounded-full animate-pulse blur-3xl top-10 left-10"></div>
           <div className="absolute w-60 h-60 bg-white/20 rounded-full animate-spin-slow blur-2xl bottom-0 right-0"></div>
