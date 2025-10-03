@@ -97,13 +97,13 @@ const Register: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen md:bg-gray-50 flex items-center justify-center px-10 lg:px-16 py-10">
+    <div className="min-h-screen md:bg-gray-50 flex items-center justify-center md:px-8 lg:px-12 xl:px-16 py-10">
       <div
         onClick={() => navigate("/")}
         className="fixed left-5 top-5 flex items-center gap-2 px-4 py-2 
-             bg-blue-600 text-white rounded-xl shadow-md cursor-pointer 
-             hover:bg-blue-700 hover:shadow-lg active:scale-95 
-             transition-all duration-300"
+               bg-blue-600 text-white rounded-xl shadow-md cursor-pointer 
+               hover:bg-blue-700 hover:shadow-lg active:scale-95 
+               transition-all duration-300"
       >
         <ArrowLeft className="w-5 h-5" />
         <span className="font-medium">Back</span>

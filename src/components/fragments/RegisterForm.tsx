@@ -1,4 +1,4 @@
-import { Check, Mail, User } from "lucide-react";
+import { Mail, User } from "lucide-react";
 import { useState } from "react";
 import { preparePkceAndRedirect } from "../../utils/authRedirects";
 
@@ -64,8 +64,8 @@ const RegisterForm: React.FC<Props> = ({
   };
 
   return (
-    <div className={`${isOpen ? "block" : "hidden"} w-full`}>
-      <h2 className="text-3xl font-bold text-gray-800 mb-10 text-center">
+    <div className={`${isOpen ? "block" : "hidden"} w-full px-4 py-6`}>
+      <h2 className="text-2xl font-bold text-gray-800 mb-10 text-center">
         Sign up for <span className="text-blue-600">AquaSense</span>
       </h2>
 
@@ -136,11 +136,10 @@ const RegisterForm: React.FC<Props> = ({
 
       {/* Submit */}
       <button
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition-all flex items-center justify-center gap-2 shadow-md mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
         onClick={handleSubmit}
         disabled={isSubmitting}
       >
-        <Check className="w-5 h-5" />
         Verify Email Address
       </button>
 
@@ -157,7 +156,7 @@ const RegisterForm: React.FC<Props> = ({
           Already have an AquaSense account?
         </p>
         <button
-          className="bg-green-600 hover:bg-green-700 text-white font-semibold text-sm px-6 py-2 rounded-md w-full sm:w-auto transition-all shadow-sm"
+          className="inline-block bg-green-600 text-white font-semibold text-sm px-5 py-2 rounded-md hover:bg-green-700 transition-all duration-300 ease-in-out"
           onClick={() => {
             preparePkceAndRedirect();
           }}
