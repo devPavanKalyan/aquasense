@@ -73,7 +73,7 @@ const RegisterForm: React.FC<Props> = ({
         Sign up to AquaSense
       </h2>
 
-      <label className="block mb-5">
+      <div className="block mb-5">
         <span className="text-zinc-700 text-sm font-medium">
           What should we call you?
         </span>
@@ -91,9 +91,9 @@ const RegisterForm: React.FC<Props> = ({
         {errors.fullName && (
           <p className="text-sm text-[#FFC312] mt-1">{errors.fullName}</p>
         )}
-      </label>
+      </div>
 
-      <label className="block mb-5">
+      <div className="block mb-5">
         <span className="text-zinc-700 text-sm font-medium">Email address</span>
         <div className="relative mt-1">
           <Mail className="absolute top-3 left-3 w-5 h-5 text-zinc-400" />
@@ -109,7 +109,7 @@ const RegisterForm: React.FC<Props> = ({
         {errors.email && (
           <p className="text-sm text-[#FFC312] mt-1">{errors.email}</p>
         )}
-      </label>
+      </div>
 
       <div className="flex items-start sm:items-center gap-2 text-sm text-zinc-700 m-1">
         <input

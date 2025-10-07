@@ -6,7 +6,7 @@ import RegisterForm from "../../components/fragments/RegisterForm";
 import VerificationUI from "../../components/fragments/VerificationUI";
 import Logo from "../../components/Logo";
 
-axios.defaults.withCredentials = true; // ✅ Ensure cookies are sent with every request
+axios.defaults.withCredentials = true;
 
 const Register: React.FC = () => {
   const [fullName, setFullName] = useState("");

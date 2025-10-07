@@ -88,7 +88,7 @@ export default function AppContent() {
 
           <Route path="/create" element={<NoGoalSetUp />} />
 
-          {isAuthenticated && (
+          {!isAuthenticated && (
             <>
               <Route
                 path="/"
