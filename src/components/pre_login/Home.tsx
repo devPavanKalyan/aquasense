@@ -1,10 +1,5 @@
 // pages/Home.tsx
-import React, {
-  useEffect,
-  useState,
-  type ChangeEvent,
-  type FormEvent
-} from "react";
+import React, { useEffect, useState } from "react";
 import { refs } from "../../utils/refs";
 
 const domainDetails = [
@@ -103,29 +98,27 @@ import {
   ShieldCheck
 } from "lucide-react";
 
-import { Mail, MessageSquareText, Phone } from "lucide-react";
-
-const supportOptions = [
-  {
-    title: "Call Us",
-    desc: "Reach our 24/7 support line for urgent issues or quick guidance.",
-    icon: <Phone className="h-8 w-8 text-blue-600" />,
-    value: "+91 7995797366"
-  },
-  {
-    title: "Email Support",
-    desc: "Send us detailed questions, and we’ll respond within 1 business day.",
-    icon: <Mail className="h-8 w-8 text-blue-600" />,
-    value: "aquasensethefuture@gmail.com"
-  },
-  {
-    title: "Live Chat",
-    desc: "Talk to our support team directly from the AquaSense dashboard.",
-    icon: <MessageSquareText className="h-8 w-8 text-blue-600" />,
-    // value: "Available in-app"
-    value: "Coming soon..."
-  }
-];
+// const supportOptions = [
+//   {
+//     title: "Call Us",
+//     desc: "Reach our 24/7 support line for urgent issues or quick guidance.",
+//     icon: <Phone className="h-8 w-8 text-blue-600" />,
+//     value: "+91 7995797366"
+//   },
+//   {
+//     title: "Email Support",
+//     desc: "Send us detailed questions, and we’ll respond within 1 business day.",
+//     icon: <Mail className="h-8 w-8 text-blue-600" />,
+//     value: "aquasensethefuture@gmail.com"
+//   },
+//   {
+//     title: "Live Chat",
+//     desc: "Talk to our support team directly from the AquaSense dashboard.",
+//     icon: <MessageSquareText className="h-8 w-8 text-blue-600" />,
+//     // value: "Available in-app"
+//     value: "Coming soon..."
+//   }
+// ];
 const features = [
   {
     title: "Real-Time Monitoring",
@@ -182,13 +175,13 @@ const featureSection = [
   }
 ];
 
-type Payload = {
-  firstName: string;
-  lastName: string;
-  phone: string;
-  email: string;
-  message: string;
-};
+// type Payload = {
+//   firstName: string;
+//   lastName: string;
+//   phone: string;
+//   email: string;
+//   message: string;
+// };
 const Home: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [manualSelection, setManualSelection] = useState(false);
@@ -209,28 +202,28 @@ const Home: React.FC = () => {
     setTimeout(() => setManualSelection(false), 30000);
   };
 
-  const [payload, setPayload] = useState<Payload>({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    email: "",
-    message: ""
-  });
+  //   const [payload, setPayload] = useState<Payload>({
+  //     firstName: "",
+  //     lastName: "",
+  //     phone: "",
+  //     email: "",
+  //     message: ""
+  //   });
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setPayload((prev) => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+  //   const handleChange = (
+  //     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  //   ) => {
+  //     const { name, value } = e.target;
+  //     setPayload((prev) => ({
+  //       ...prev,
+  //       [name]: value
+  //     }));
+  //   };
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", payload);
-  };
+  //   const handleSubmit = (e: FormEvent) => {
+  //     e.preventDefault();
+  //     console.log("Form submitted:", payload);
+  //   };
   const activeItem = domainDetails[activeIndex];
   return (
     <div>
