@@ -89,14 +89,7 @@ export default function AppContent() {
 
           {/* {!isAuthenticated && ( */}
           <>
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <AppShellLayout />
-                </ProtectedRoute>
-              }
-            >
+            <Route path="/" element={<AppShellLayout />}>
               <Route
                 index
                 element={
