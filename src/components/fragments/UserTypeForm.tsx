@@ -64,9 +64,7 @@ const UserTypeForm: React.FC<Props> = ({
           px-6 sm:px-8 py-8 sm:py-10 
           transition-all duration-300"
     >
-      <h2 className="text-2xl sm:text-3xl font-bold text-zinc-800 mb-10">
-        Sign in to <span className="text-[#4B0082]">AquaSense</span>
-      </h2>
+      <p className="text-2xl sm:text-3xl font-bold mb-5">Login to AquaSense</p>
 
       <div id="user_type_input" className="mb-5">
         <p className="text-zinc-700 font-medium mb-2">Select User Type:</p>
@@ -177,18 +175,6 @@ const UserTypeForm: React.FC<Props> = ({
           Sign Up
         </button>
       </div>
-
-      <p className="text-xs text-zinc-500 text-center leading-relaxed mt-5">
-        By continuing, you agree to the AquaSense Customer Agreement and the{" "}
-        <a className="text-[#4B0082] hover:underline font-medium" href="#">
-          Privacy Notice
-        </a>
-        . This site uses essential cookies. See our{" "}
-        <a className="text-[#4B0082] hover:underline font-medium" href="#">
-          Cookie Notice
-        </a>
-        .
-      </p>
     </form>
   );
 };

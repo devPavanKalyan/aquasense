@@ -8,7 +8,7 @@ export default function Footer() {
   const navigate = useNavigate();
 
   return (
-    <footer className="bg-gradient-to-t from-[#f5f7ff] to-white pt-16 pb-12 px-6 text-gray-800 shadow-inner">
+    <footer className="bg-gray-50 pt-16 pb-12 px-6 text-gray-800">
       <div
         className={clsx(
           isAuthenticated

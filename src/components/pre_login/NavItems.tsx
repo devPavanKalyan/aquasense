@@ -10,10 +10,10 @@ type NavItemsProps = {
 const navLinks: { label: string; key: SectionKeys }[] = [
   { label: "Home", key: "home" },
   { label: "Overview", key: "overview" },
-  { label: "Features", key: "features" },
+  { label: "Features", key: "features" }
   //   { label: "Docs", key: "docs" },
-  { label: "Support", key: "support" },
-  { label: "Contact", key: "contact" }
+  //   { label: "Support", key: "support" },
+  //   { label: "Contact", key: "contact" }
   //   { label: "Help us", key: "helpus" }
 ];
 

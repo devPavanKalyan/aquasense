@@ -1,12 +1,10 @@
 // pages/Home.tsx
-import { motion } from "framer-motion";
 import React, {
   useEffect,
   useState,
   type ChangeEvent,
   type FormEvent
 } from "react";
-import { redirectToSignup } from "../../utils/authRedirects";
 import { refs } from "../../utils/refs";
 
 const domainDetails = [
@@ -105,7 +103,6 @@ import {
   ShieldCheck
 } from "lucide-react";
 
-import { KeyboardReturn } from "@mui/icons-material";
 import { Mail, MessageSquareText, Phone } from "lucide-react";
 
 const supportOptions = [
@@ -238,7 +235,7 @@ const Home: React.FC = () => {
   return (
     <div>
       <section ref={refs.home} className="scroll-mt-20">
-        <section className="bg-gradient-to-br from-white to-blue-50 py-15 px-6 sm:px-10 lg:px-20">
+        {/* <section className="bg-gradient-to-br from-white to-blue-50 mt-10 py-15 px-6 sm:px-10 lg:px-20">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -256,77 +253,89 @@ const Home: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <button className="px-8 py-4 bg-blue-600 text-white rounded-xl shadow-md hover:bg-blue-700 transition duration-300 font-semibold text-base sm:text-lg">
+              <button
+                className="px-8 py-4 bg-blue-600 text-white rounded-xl shadow-md hover:bg-blue-700 transition duration-300 font-semibold text-base sm:text-lg"
+                onClick={redirectToSignup}
+              >
                 Start Free Trial
               </button>
-              <button className="px-8 py-4 border-2 border-blue-600 text-blue-600 rounded-xl hover:bg-blue-50 transition duration-300 font-semibold text-base sm:text-lg">
+              <button
+                className="px-8 py-4 border-2 border-blue-600 text-blue-600 rounded-xl hover:bg-blue-50 transition duration-300 font-semibold text-base sm:text-lg"
+                onClick={() => {
+                  scrollToSection("contact");
+                }}
+              >
                 Contact Sales
               </button>
             </motion.div>
           </div>
-        </section>
+        </section> */}
+      </section>
 
-        <section className="py-15 px-6 max-w-7xl mx-auto grid gap-24 lg:grid-cols-2 items-start">
-          <div>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
-              Smarter Solutions for a{" "}
-              <span className="text-blue-600">Water-Intelligent World</span>
-            </h2>
-            <p className="text-lg sm:text-xl text-gray-700 mb-10 leading-relaxed max-w-2xl">
-              Whether it’s aquaculture, irrigation, or smart city infrastructure
-              — Versewave evolves with your needs, delivering real-time insights
-              and tangible impact.
-            </p>
+      {/* Section 1 - Domains We Serve */}
+      <section className="py-24 px-6 sm:px-12 lg:px-20 max-w-7xl mx-auto grid gap-20 lg:grid-cols-2 items-start">
+        <div>
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
+            Smarter Solutions for a{" "}
+            <span className="text-blue-600">Water-Intelligent World</span>
+          </h2>
 
-            <div className="mt-12">
-              <h4 className="text-md font-semibold text-gray-900 mb-4">
-                Domains We Serve
-              </h4>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-                {domainDetails.map((item, index) => (
-                  <li
-                    key={item.name}
-                    onClick={() => handleSelect(index)}
-                    className={`cursor-pointer px-5 py-4 rounded-3xl border transition-all font-medium shadow-sm hover:shadow-lg transform hover:-translate-y-1 duration-300 ${
-                      activeIndex === index
-                        ? "bg-blue-600 text-white border-blue-600 shadow-lg"
-                        : "bg-white text-blue-700 border-gray-200 hover:bg-blue-50"
-                    }`}
-                  >
-                    {item.name}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <p className="text-lg sm:text-xl text-gray-700 mb-10 leading-relaxed max-w-2xl">
+            Whether it’s aquaculture, irrigation, or smart city infrastructure —
+            AquaSense evolves with your needs, delivering real-time insights and
+            tangible impact.
+          </p>
+
+          <div className="mt-12">
+            <h4 className="text-md font-semibold text-gray-900 mb-4">
+              Domains We Serve
+            </h4>
+
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+              {domainDetails.map((item, index) => (
+                <li
+                  key={item.name}
+                  onClick={() => handleSelect(index)}
+                  className={`cursor-pointer px-5 py-4 rounded-3xl border transition-all font-medium shadow-sm hover:shadow-lg transform hover:-translate-y-1 duration-300 ${
+                    activeIndex === index
+                      ? "bg-blue-600 text-white border-blue-600 shadow-lg"
+                      : "bg-white text-blue-700 border-gray-200 hover:bg-blue-50"
+                  }`}
+                >
+                  {item.name}
+                </li>
+              ))}
+            </ul>
           </div>
+        </div>
 
-          <div className="bg-white p-10 space-y-8 transition-all duration-500 ease-in-out hover:shadow-3xl">
-            <div className="flex items-center gap-5">
-              <div className="text-5xl text-blue-600">{activeItem.icon}</div>
-              <div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-blue-800">
-                  {activeItem.title}
-                </h3>
-                <p className="text-sm sm:text-base text-blue-600 font-medium mt-1">
-                  {activeItem.stat}
-                </p>
-              </div>
-            </div>
-            <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-              {activeItem.description}
-            </p>
-            <div className="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-2xl">
-              <p className="text-sm sm:text-base italic text-gray-700">
-                {activeItem.impact}
+        <div className="bg-white p-10 space-y-8 rounded-3xl shadow-sm transition-all duration-500 ease-in-out hover:shadow-2xl">
+          <div className="flex items-center gap-5">
+            <div className="text-5xl text-blue-600">{activeItem.icon}</div>
+            <div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-blue-800">
+                {activeItem.title}
+              </h3>
+              <p className="text-sm sm:text-base text-blue-600 font-medium mt-1">
+                {activeItem.stat}
               </p>
             </div>
           </div>
-        </section>
+          <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+            {activeItem.description}
+          </p>
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-2xl">
+            <p className="text-sm sm:text-base italic text-gray-700">
+              {activeItem.impact}
+            </p>
+          </div>
+        </div>
       </section>
 
+      {/* Section 2 - Overview */}
       <section
         ref={refs.overview}
-        className="scroll-mt-20 bg-white py-32 px-6 sm:px-12 lg:px-20 font-sans"
+        className="scroll-mt-20 bg-white py-24 px-6 sm:px-12 lg:px-20 font-sans"
       >
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
@@ -340,7 +349,7 @@ const Home: React.FC = () => {
             sustainable decisions.
           </p>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto">
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto">
             {features.map((feature) => (
               <div
                 key={feature.title}
@@ -361,9 +370,10 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Section 3 - Platform Features */}
       <section
         ref={refs.features}
-        className="scroll-mt-20 bg-gray-50 py-32 px-6 sm:px-12 lg:px-20 font-sans"
+        className="scroll-mt-20 bg-white py-24 px-6 sm:px-12 lg:px-20 font-sans"
       >
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
@@ -395,7 +405,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <section
+      {/* <section
         ref={refs.support}
         className="scroll-mt-20 bg-blue-50 py-32 px-6 sm:px-12 lg:px-20 font-sans"
       >
@@ -429,9 +439,9 @@ const Home: React.FC = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section
+      {/* <section
         ref={refs.contact}
         className="scroll-mt-20 bg-white py-15 px-4 sm:px-8 lg:px-12 font-sans"
       >
@@ -445,7 +455,7 @@ const Home: React.FC = () => {
           </p>
 
           <form
-            className="border border-2 border-[#4B0082] p-8 rounded-3xl space-y-6 text-left"
+            className="p-8 rounded-3xl space-y-6 text-left"
             onSubmit={handleSubmit}
           >
             <div className="grid gap-6 sm:grid-cols-2">
@@ -528,9 +538,9 @@ const Home: React.FC = () => {
             </button>
           </form>
         </div>
-      </section>
+      </section> */}
 
-      <section className="text-gray-900 py-15 px-6 sm:px-12 lg:px-20">
+      {/* <section className="text-gray-900 py-15 px-6 sm:px-12 lg:px-20">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
             Ready to <span className="text-indigo-600">optimize</span> and{" "}
@@ -551,15 +561,8 @@ const Home: React.FC = () => {
               Go to Dashboard
             </button>
           </div>
-
-          <div className="mt-16 grid grid-cols-4 gap-4 max-w-lg mx-auto">
-            <div className="h-2 w-full rounded-full bg-gradient-to-r from-indigo-400 via-indigo-500 to-indigo-600 animate-pulse" />
-            <div className="h-2 w-full rounded-full bg-gradient-to-r from-emerald-400 via-emerald-500 to-emerald-600 animate-pulse delay-75" />
-            <div className="h-2 w-full rounded-full bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 animate-pulse delay-150" />
-            <div className="h-2 w-full rounded-full bg-gradient-to-r from-pink-400 via-rose-400 to-rose-500 animate-pulse delay-200" />
-          </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

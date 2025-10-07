@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import CaptchaModal from "../components/fragments/CaptchaModal";
 import SignInPasswordSection from "../components/fragments/SignInPasswordSection";
 import UserTypeForm from "../components/fragments/UserTypeForm";
 import VerificationUI from "../components/fragments/VerificationUI";
+import Logo from "../components/Logo";
 
 const SignIn: React.FC = () => {
   //   const [loginType, setLoginType] = useState<"owner" | "staff">("staff");
@@ -63,17 +64,10 @@ const SignIn: React.FC = () => {
     setUserTypeForm(true);
   };
 
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div
-        onClick={() => navigate("/")}
-        className="fixed left-5 top-5 cursor-pointer text-2xl text-black 
-             transition-transform duration-300 hover:scale-105"
-        style={{ fontFamily: "'Pacifico', cursive" }}
-      >
-        AquaSense
+      <div className="fixed left-5 top-5">
+        <Logo />
       </div>
 
       {userTypeFormOpen && (

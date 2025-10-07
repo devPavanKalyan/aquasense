@@ -61,11 +61,15 @@ export default function AppContent() {
   }
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      {shouldShowHeaderFooter && <Header />}
-      <div className="flex-grow">
+    <div className="flex flex-col min-h-screen bg-white text-gray-900">
+      {shouldShowHeaderFooter && (
+        <header className="fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200 shadow-sm">
+          <Header />
+        </header>
+      )}
+
+      <main className="flex-grow">
         <Routes>
-          {/* PUBLIC ROUTES */}
           {!isAuthenticated && (
             <>
               <Route path="/signup" element={<Register />} />
@@ -84,10 +88,8 @@ export default function AppContent() {
 
           <Route path="/create" element={<NoGoalSetUp />} />
 
-          {/* PROTECTED ROUTES */}
           {isAuthenticated && (
             <>
-              {/* AppShell for Main Pages */}
               <Route
                 path="/"
                 element={
@@ -155,28 +157,18 @@ export default function AppContent() {
                   }
                 />
 
-                {/* Devices Section */}
                 <Route path="devices" element={<DevicesLayout />}>
                   <Route index element={<YourDevices />} />
                   <Route path="purchased" element={<Devices />} />
-                  <Route path="connect" element={<ConnectSensorPage />} />{" "}
-                  {/* ✅ Correct */}
+                  <Route path="connect" element={<ConnectSensorPage />} />
                 </Route>
 
-                {/* <Route path="shopping/:productId" element={<Product />} /> */}
-
-                {/* Live monitoring */}
                 <Route path="monitoring" element={<LiveMonitoring />} />
-
                 <Route path="alerts" element={<Alerts />} />
-
                 <Route path="component" element={<YourComponent />} />
-
-                {/* Analytics */}
                 <Route path="analytics" element={<Analytics />} />
               </Route>
 
-              {/* Settings Section */}
               <Route
                 path="/settings"
                 element={
@@ -188,17 +180,19 @@ export default function AppContent() {
                 <Route path="profile" element={<ProfilePage />} />
               </Route>
 
-              {/* <Route path="/" element={<UpdatedOverviewLayout />}></Route> */}
-
               <Route path="shopping.versewave.in" element={<Shopping />} />
             </>
           )}
 
-          {/* COMMON ROUTE FOR ALL */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </div>
-      {!shouldShowHeaderFooter ? <></> : <Footer />}
+      </main>
+
+      {shouldShowHeaderFooter && (
+        <footer className="bg-gray-50">
+          <Footer />
+        </footer>
+      )}
     </div>
   );
 }

@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import CaptchaModal from "../../components/fragments/CaptchaModal";
 import PasswordSection from "../../components/fragments/PasswordSection";
 import RegisterForm from "../../components/fragments/RegisterForm";
 import VerificationUI from "../../components/fragments/VerificationUI";
+import Logo from "../../components/Logo";
 
 axios.defaults.withCredentials = true; // ✅ Ensure cookies are sent with every request
 
@@ -18,7 +18,6 @@ const Register: React.FC = () => {
   const [registerFormOpen, setRegisterFormOpen] = useState(true);
   const [passwordSectionOpen, setPasswordSectionOpen] = useState(false);
 
-  // ----- Step control -----
   const goToCaptcha = () => {
     setCaptchaOpen(true);
   };
@@ -41,7 +40,6 @@ const Register: React.FC = () => {
     setRegisterFormOpen(true);
   };
 
-  // ----- Handlers -----
   const handleFullChange = (value: string) => setFullName(value);
   const handleEmailChange = (value: string) => setEmail(value);
   const handleAgreeChange = (value: boolean) => setAgreed(value);
@@ -62,10 +60,9 @@ const Register: React.FC = () => {
     }
 
     console.log("Form validated - Opening Captcha...");
-    goToCaptcha(); // ✅ Only open captcha here
+    goToCaptcha();
   };
 
-  // This will be called from CaptchaModal after user successfully solves captcha
   const submitDetailsAfterCaptcha = async () => {
     setCaptchaOpen(false);
     try {
@@ -93,17 +90,10 @@ const Register: React.FC = () => {
     }
   };
 
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div
-        onClick={() => navigate("/")}
-        className="fixed left-5 top-5 cursor-pointer text-2xl text-black 
-             transition-transform duration-300 hover:scale-105"
-        style={{ fontFamily: "'Pacifico', cursive" }}
-      >
-        AquaSense
+      <div className="fixed left-5 top-5">
+        <Logo />
       </div>
 
       {registerFormOpen && (
