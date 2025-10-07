@@ -10,7 +10,6 @@ import ContactUs from "./components/pre_login/ContactUs";
 import Docs from "./components/pre_login/Docs";
 import Features from "./components/pre_login/Features";
 import HelpUs from "./components/pre_login/HelpUs";
-import Home from "./components/pre_login/Home";
 import Overview from "./components/pre_login/Overview";
 import Support from "./components/pre_login/Support";
 
@@ -73,7 +72,7 @@ export default function AppContent() {
           {!isAuthenticated && (
             <>
               <Route path="/signup" element={<Register />} />
-              <Route path="/" element={<Home />} />
+              {/* <Route path="/" element={<Home />} /> */}
               <Route path="/callback" element={<Callback />} />
               <Route path="/contact" element={<ContactUs />} />
               <Route path="/redirect" element={<CallbackBackend />} />
@@ -88,101 +87,101 @@ export default function AppContent() {
 
           <Route path="/create" element={<NoGoalSetUp />} />
 
-          {!isAuthenticated && (
-            <>
+          {/* {!isAuthenticated && ( */}
+          <>
+            <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <AppShellLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route
-                path="/"
+                index
                 element={
-                  <ProtectedRoute>
-                    <AppShellLayout />
-                  </ProtectedRoute>
+                  <OverviewLayout>
+                    <PostHome />
+                  </OverviewLayout>
                 }
-              >
-                <Route
-                  index
-                  element={
-                    <OverviewLayout>
-                      <PostHome />
-                    </OverviewLayout>
-                  }
-                />
-
-                <Route
-                  path="reports"
-                  element={
-                    <OverviewLayout>
-                      <Reports />
-                    </OverviewLayout>
-                  }
-                />
-                <Route
-                  path="inventory"
-                  element={
-                    <OverviewLayout>
-                      <Inventory />
-                    </OverviewLayout>
-                  }
-                />
-                <Route
-                  path="automation"
-                  element={
-                    <OverviewLayout>
-                      <Automation />
-                    </OverviewLayout>
-                  }
-                />
-                <Route
-                  path="user-management"
-                  element={
-                    <OverviewLayout>
-                      <IamManagementLayout />
-                    </OverviewLayout>
-                  }
-                />
-
-                <Route
-                  path="insights"
-                  element={
-                    <OverviewLayout>
-                      <InsightsAndBestPractices />
-                    </OverviewLayout>
-                  }
-                />
-                <Route
-                  path="best-practices"
-                  element={
-                    <OverviewLayout>
-                      <BestPractices />
-                    </OverviewLayout>
-                  }
-                />
-
-                <Route path="devices" element={<DevicesLayout />}>
-                  <Route index element={<YourDevices />} />
-                  <Route path="purchased" element={<Devices />} />
-                  <Route path="connect" element={<ConnectSensorPage />} />
-                </Route>
-
-                <Route path="monitoring" element={<LiveMonitoring />} />
-                <Route path="alerts" element={<Alerts />} />
-                <Route path="component" element={<YourComponent />} />
-                <Route path="analytics" element={<Analytics />} />
-              </Route>
+              />
 
               <Route
-                path="/settings"
+                path="reports"
                 element={
-                  <ProtectedRoute>
-                    <SettingsLayout />
-                  </ProtectedRoute>
+                  <OverviewLayout>
+                    <Reports />
+                  </OverviewLayout>
                 }
-              >
-                <Route path="profile" element={<ProfilePage />} />
+              />
+              <Route
+                path="inventory"
+                element={
+                  <OverviewLayout>
+                    <Inventory />
+                  </OverviewLayout>
+                }
+              />
+              <Route
+                path="automation"
+                element={
+                  <OverviewLayout>
+                    <Automation />
+                  </OverviewLayout>
+                }
+              />
+              <Route
+                path="user-management"
+                element={
+                  <OverviewLayout>
+                    <IamManagementLayout />
+                  </OverviewLayout>
+                }
+              />
+
+              <Route
+                path="insights"
+                element={
+                  <OverviewLayout>
+                    <InsightsAndBestPractices />
+                  </OverviewLayout>
+                }
+              />
+              <Route
+                path="best-practices"
+                element={
+                  <OverviewLayout>
+                    <BestPractices />
+                  </OverviewLayout>
+                }
+              />
+
+              <Route path="devices" element={<DevicesLayout />}>
+                <Route index element={<YourDevices />} />
+                <Route path="purchased" element={<Devices />} />
+                <Route path="connect" element={<ConnectSensorPage />} />
               </Route>
 
-              <Route path="shopping.versewave.in" element={<Shopping />} />
-            </>
-          )}
+              <Route path="monitoring" element={<LiveMonitoring />} />
+              <Route path="alerts" element={<Alerts />} />
+              <Route path="component" element={<YourComponent />} />
+              <Route path="analytics" element={<Analytics />} />
+            </Route>
+
+            <Route
+              path="/settings"
+              element={
+                <ProtectedRoute>
+                  <SettingsLayout />
+                </ProtectedRoute>
+              }
+            >
+              <Route path="profile" element={<ProfilePage />} />
+            </Route>
+
+            <Route path="shopping.versewave.in" element={<Shopping />} />
+          </>
+          {/* )} */}
 
           <Route path="*" element={<NotFound />} />
         </Routes>
