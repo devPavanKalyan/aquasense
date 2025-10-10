@@ -1,5 +1,5 @@
 import React from "react";
-import { redirectToSignup } from "../../../utils/authRedirects";
+import { redirectToSignup } from "../../utils/authRedirects";
 
 const CTASection: React.FC = () => {
   return (

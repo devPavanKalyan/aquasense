@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "commentedMultiLevelMenu.tsx", "CustomCursor.tsx", "unused"]
+  "include": ["src", "commentedMultiLevelMenu.tsx", "CustomCursor.tsx", "deprecated"]
 }

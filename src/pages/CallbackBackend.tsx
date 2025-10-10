@@ -1,9 +1,9 @@
 // Callback.tsx
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 
-const Callback: React.FC = () => {
+const CallbackBackend: React.FC = () => {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
@@ -11,22 +11,19 @@ const Callback: React.FC = () => {
     // Extract URL parameters.
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
-    // const returnedState = params.get("state");
+    const codeVerifier = params.get("code_verifier");
 
-    // Retrieve PKCE parameters stored earlier (e.g., during login initiation)
-    // const expectedState = sessionStorage.getItem("pkce_state") || "";
-    const codeVerifier: string = sessionStorage.getItem("pkce_verifier") || "";
-
-    // Async function to exchange the code and code verifier for tokens.
-
-    if (!codeVerifier || !code) {
+    // Validate the presence of required parameters.
+    if (!code || !codeVerifier) {
+      alert("Invalid or missing PKCE flow parameters.");
       return;
     }
+
+    // Async function to exchange the code and code verifier for tokens.
     const exchangeCodeForToken = async () => {
-      console.log("Code verifier", codeVerifier);
       try {
         const response = await fetch(
-          "http://localhost:9091/api/login/oauth/token",
+          "http://localhost:9090/api/login/oauth/token",
           {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -54,9 +51,7 @@ const Callback: React.FC = () => {
         sessionStorage.removeItem("pkce_verifier");
 
         // Navigate to the protected dashboard page.
-        navigate("/", {
-          replace: true
-        });
+        navigate("/");
       } catch (error) {
         console.error("Token exchange error:", error);
         alert("Something went wrong during login.");
@@ -73,4 +68,4 @@ const Callback: React.FC = () => {
   );
 };
 
-export default Callback;
+export default CallbackBackend;

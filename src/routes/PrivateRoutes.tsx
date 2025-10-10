@@ -1,14 +1,12 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import Profile from "../pages/settings/Profile";
 import ProtectedRoute from "./PrivateRoute";
-const ProfilePage = React.lazy(
-  () => import("../components/post_login/ProfilePage")
-);
 const AppShellLayout = React.lazy(() => import("../layouts/AppShellLayout"));
 const NotFound = React.lazy(() => import("../components/not_found/NotFound"));
 const PostHome = React.lazy(() => import("../pages/overview/Dashboard"));
 const UserDashboard = React.lazy(
-  () => import("../pages/monitoring/LiveMonitoring")
+  () => import("../pages/monitoring/MonitoringPage")
 );
 const Reports = React.lazy(() => import("../pages/overview/Reports"));
 const Alerts = React.lazy(() => import("../pages/alerts/Alerts"));
@@ -23,9 +21,7 @@ const DevicesLayout = React.lazy(() => import("../pages/devices/DeviceLayout"));
 const YourDevices = React.lazy(() => import("../pages/devices/YourDevices"));
 const Shopping = React.lazy(() => import("../pages/devices/Shopping"));
 const Product = React.lazy(() => import("../pages/devices/Product"));
-const SettingsLayout = React.lazy(
-  () => import("../components/post_login/SettingsLayout")
-);
+const SettingsLayout = React.lazy(() => import("../layouts/SettingsLayout"));
 const IamManagementLayout = React.lazy(
   () => import("../pages/overview/IamManagementLayout")
 );
@@ -107,7 +103,7 @@ export default function ProtectedRoutes() {
           </ProtectedRoute>
         }
       >
-        <Route path="profile" element={<ProfilePage />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </>

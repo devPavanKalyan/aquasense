@@ -236,7 +236,7 @@ import {
 } from "lucide-react";
 import type { JSX } from "react";
 import { Link, useLocation } from "react-router-dom";
-import ScrollableTabs from "../../hooks/ScrollableTabs";
+import ScrollableTabs from "../hooks/ScrollableTabs";
 
 interface NavItem {
   id: string;

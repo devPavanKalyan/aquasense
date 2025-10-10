@@ -1,9 +1,6 @@
 import React from "react";
 
 /**
- * VerseWaveLogo.tsx
- * A simple React component using Tailwind CSS for a modern, responsive logo.
- * Ensure you have Poppins added in your global styles (e.g., via index.html or global.css):
  *   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;900&display=swap');
  */
 

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import React from "react";
-import { redirectToSignup } from "../../../utils/authRedirects";
-import { scrollToSection } from "../../../utils/refs";
+import { redirectToSignup } from "../../utils/authRedirects";
+import { scrollToSection } from "../../utils/refs";
 
 const HeroSection: React.FC = () => {
   return (

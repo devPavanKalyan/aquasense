@@ -1,62 +1,46 @@
-// src/App.js
-import { useContext } from "react";
+import { lazy, Suspense, useContext } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-
 import { AuthContext, AuthProvider } from "./context/AuthContext";
-import ProtectedRoute from "./routes/PrivateRoute";
-
-import NotFound from "./components/not_found/NotFound";
-import ContactUs from "./components/pre_login/ContactUs";
-import Docs from "./components/pre_login/Docs";
-import Features from "./components/pre_login/Features";
-import HelpUs from "./components/pre_login/HelpUs";
-import Overview from "./components/pre_login/Overview";
-import Support from "./components/pre_login/Support";
 
 import "./App.css";
-import SignInPage from "./authentication/SignIn";
-import NoGoalSetUp from "./components/business/NoGoalSetUp";
-import Footer from "./components/post_login/PostSignInFooter";
-import ProfilePage from "./components/post_login/ProfilePage";
-import SettingsLayout from "./components/post_login/SettingsLayout";
-import YourComponent from "./components/post_login/YourComponent";
-import Callback from "./components/pre_login/Callback";
-import CallbackBackend from "./components/pre_login/CallbackBackend";
-import Header from "./components/pre_login/Header";
-import AppShellLayout from "./layouts/AppShellLayout";
-import OverviewLayout from "./layouts/OverviewLayout";
-import Alerts from "./pages/alerts/Alerts";
-import Analytics from "./pages/analytics/Analytics";
-import Register from "./pages/auth/Register";
-import ConnectSensorPage from "./pages/devices/ConnectSensorPage";
-import DevicesLayout from "./pages/devices/DeviceLayout";
-import Devices from "./pages/devices/Devices";
-import Shopping from "./pages/devices/Shopping";
-import YourDevices from "./pages/devices/YourDevices";
-import LiveMonitoring from "./pages/monitoring/LiveMonitoring";
-import Automation from "./pages/overview/Automation";
-import BestPractices from "./pages/overview/BestPractices";
-import PostHome from "./pages/overview/Dashboard";
-import IamManagementLayout from "./pages/overview/IamManagementLayout";
-import InsightsAndBestPractices from "./pages/overview/InsightsAndBestPractices";
-import Inventory from "./pages/overview/Inventory";
-import Reports from "./pages/overview/Reports";
+import LoadingSpinner from "./common/LoadingSpinner";
+
+const NotFound = lazy(() => import("./components/not_found/NotFound"));
+const Home = lazy(() => import("./pages/Home"));
+const SignIn = lazy(() => import("./authentication/SignIn"));
+const MonitoringPage = lazy(() => import("./pages/monitoring/MonitoringPage"));
+const Footer = lazy(() => import("./components/PostSignInFooter"));
+const SettingsLayout = lazy(() => import("./layouts/SettingsLayout"));
+const Alerts = lazy(() => import("./pages/alerts/Alerts"));
+const Register = lazy(() => import("./pages/auth/Register"));
+const Callback = lazy(() => import("./pages/Callback"));
+const CallbackBackend = lazy(() => import("./pages/CallbackBackend"));
+const DevicesLayout = lazy(() => import("./pages/devices/DeviceLayout"));
+const Header = lazy(() => import("./pages/Header"));
+const PostHome = lazy(() => import("./pages/overview/Dashboard"));
+const Reports = lazy(() => import("./pages/overview/Reports"));
+const Account = lazy(() => import("./pages/settings/Account"));
+const Dashboard = lazy(() => import("./pages/settings/Dashboard"));
+const IAM = lazy(() => import("./pages/settings/IAM"));
+const Notifications = lazy(() => import("./pages/settings/Notifications"));
+const Orgs = lazy(() => import("./pages/settings/Orgs"));
+const Profile = lazy(() => import("./pages/settings/Profile"));
+const ReportSettings = lazy(() => import("./pages/settings/ReportSettings"));
+const Security = lazy(() => import("./pages/settings/Security"));
+const Sessions = lazy(() => import("./pages/settings/Sessions"));
+const ProtectedRoute = lazy(() => import("./routes/PrivateRoute"));
+const NewUIUX = lazy(() => import("./uiux/NewUIUX"));
 
 export default function AppContent() {
-  const { isAuthenticated, loading } = useContext(AuthContext);
-
+  const { isAuthenticated, loading: authLoading } = useContext(AuthContext);
   const excluded = ["/oauth/authorize", "/signup"];
   const location = useLocation();
 
   const shouldShowHeaderFooter =
-    !isAuthenticated && !excluded.includes(location.pathname);
+    isAuthenticated && !excluded.includes(location.pathname);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-gray-500">
-        Loading...
-      </div>
-    );
+  if (authLoading) {
+    return <LoadingSpinner />;
   }
 
   return (
@@ -69,119 +53,48 @@ export default function AppContent() {
 
       <main className="flex-grow">
         <Routes>
-          {!isAuthenticated && (
+          {isAuthenticated && (
             <>
-              <Route path="/signup" element={<Register />} />
-              {/* <Route path="/" element={<Home />} /> */}
-              <Route path="/callback" element={<Callback />} />
-              <Route path="/contact" element={<ContactUs />} />
-              <Route path="/redirect" element={<CallbackBackend />} />
-              <Route path="/helpus" element={<HelpUs />} />
-              <Route path="/overview" element={<Overview />} />
-              <Route path="/features" element={<Features />} />
-              <Route path="/docs" element={<Docs />} />
-              <Route path="/support" element={<Support />} />
-              <Route path="/oauth/authorize" element={<SignInPage />} />
+              <ProtectedRoute>
+                <Route path="/" element={<Home />} />
+                <Route path="/oauth/authorize" element={<SignIn />} />
+                <Route path="/signup" element={<Register />} />
+                <Route path="/callback" element={<Callback />} />
+                <Route path="/redirect" element={<CallbackBackend />} />
+              </ProtectedRoute>
             </>
           )}
 
-          <Route path="/create" element={<NoGoalSetUp />} />
-
-          {/* {!isAuthenticated && ( */}
-          <>
-            <Route path="/" element={<AppShellLayout />}>
-              <Route
-                index
-                element={
-                  <OverviewLayout>
-                    <PostHome />
-                  </OverviewLayout>
-                }
-              />
-
-              <Route
-                path="reports"
-                element={
-                  <OverviewLayout>
-                    <Reports />
-                  </OverviewLayout>
-                }
-              />
-              <Route
-                path="inventory"
-                element={
-                  <OverviewLayout>
-                    <Inventory />
-                  </OverviewLayout>
-                }
-              />
-              <Route
-                path="automation"
-                element={
-                  <OverviewLayout>
-                    <Automation />
-                  </OverviewLayout>
-                }
-              />
-              <Route
-                path="user-management"
-                element={
-                  <OverviewLayout>
-                    <IamManagementLayout />
-                  </OverviewLayout>
-                }
-              />
-
-              <Route
-                path="insights"
-                element={
-                  <OverviewLayout>
-                    <InsightsAndBestPractices />
-                  </OverviewLayout>
-                }
-              />
-              <Route
-                path="best-practices"
-                element={
-                  <OverviewLayout>
-                    <BestPractices />
-                  </OverviewLayout>
-                }
-              />
-
-              <Route path="devices" element={<DevicesLayout />}>
-                <Route index element={<YourDevices />} />
-                <Route path="purchased" element={<Devices />} />
-                <Route path="connect" element={<ConnectSensorPage />} />
+          {!isAuthenticated && (
+            <>
+              <Route path="/settings" element={<SettingsLayout />}>
+                <Route path="profile" element={<Profile />} />
+                <Route path="account" element={<Account />} />
+                <Route path="iam" element={<IAM />} />
+                <Route path="security" element={<Security />} />
+                <Route path="sessions" element={<Sessions />} />
+                <Route path="notifications" element={<Notifications />} />
+                <Route path="orgs" element={<Orgs />} />
+                <Route path="reports" element={<ReportSettings />} />
+                <Route path="dashboard" element={<Dashboard />} />
               </Route>
 
-              <Route path="monitoring" element={<LiveMonitoring />} />
-              <Route path="alerts" element={<Alerts />} />
-              <Route path="component" element={<YourComponent />} />
-              <Route path="analytics" element={<Analytics />} />
-            </Route>
-
-            <Route
-              path="/settings"
-              element={
-                <ProtectedRoute>
-                  <SettingsLayout />
-                </ProtectedRoute>
-              }
-            >
-              <Route path="profile" element={<ProfilePage />} />
-            </Route>
-
-            <Route path="shopping.versewave.in" element={<Shopping />} />
-          </>
-          {/* )} */}
+              <Route path="/" element={<NewUIUX />}>
+                <Route index element={<PostHome />} />
+                <Route path="devices" element={<DevicesLayout />} />
+                <Route path="monitoring" element={<MonitoringPage />} />
+                <Route path="alerts" element={<Alerts />} />
+                <Route path="reports" element={<Reports />} />
+              </Route>
+            </>
+          )}
 
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
       {shouldShowHeaderFooter && (
-        <footer className="bg-gray-50">
+        <footer className="bg-gray-50 border-t border-gray-200">
           <Footer />
         </footer>
       )}
@@ -192,7 +105,9 @@ export default function AppContent() {
 export function App() {
   return (
     <AuthProvider>
-      <AppContent />
+      <Suspense fallback={<LoadingSpinner />}>
+        <AppContent />
+      </Suspense>
     </AuthProvider>
   );
 }

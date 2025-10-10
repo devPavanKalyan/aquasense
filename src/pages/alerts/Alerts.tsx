@@ -1,4 +1,6 @@
+import { Tune } from "@mui/icons-material";
 import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 
 const alerts = [
   {
@@ -25,14 +27,18 @@ const alerts = [
 ];
 
 const severityColors: Record<string, string> = {
-  High: "bg-orange-100 text-orange-800",
-  Moderate: "bg-yellow-100 text-yellow-800",
-  Critical: "bg-red-100 text-red-800"
+  High: "bg-orange-100 text-orange-700",
+  Moderate: "bg-yellow-100 text-yellow-700",
+  Critical: "bg-red-100 text-red-700"
+};
+type AlertContext = {
+  search: string;
 };
 
 const Alerts = () => {
-  const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
+
+  const { search } = useOutletContext<AlertContext>();
 
   const filteredAlerts = alerts.filter((alert) => {
     const matchesSearch =
@@ -43,22 +49,15 @@ const Alerts = () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 text-gray-800">
-      <h2 className="text-2xl font-semibold text-blue-600 mb-6">Alerts</h2>
+    <div className="max-w-7xl mx-auto p-5 text-gray-800">
+      <h2 className="text-2xl font-semibold mb-4">Alerts</h2>
 
-      {/* Search Box */}
-      <div className="mb-6">
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search alerts..."
-          className="w-full md:w-96 px-4 py-2 rounded-md border border-gray-300 bg-white text-sm font-medium shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none transition"
-        />
-      </div>
+      <div className="flex flex-wrap gap-3 items-center mb-6">
+        <button className="flex items-center gap-2 px-5 py-2 border border-2 border-blue-600 text-blue-600 font-bold hover:text-white hover:bg-blue-600 rounded-full text-sm hover:bg-blue-50">
+          <Tune className="w-4 h-4" />
+          Filter
+        </button>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {/* Left Filters */}
         <aside className="md:col-span-1">
           <h3 className="text-lg font-semibold mb-3 text-gray-800">
             Filter by Severity
@@ -82,42 +81,33 @@ const Alerts = () => {
             ))}
           </div>
         </aside>
-
-        {/* Right Section: Notifications */}
-        <section className="md:col-span-3">
-          {filteredAlerts.length === 0 ? (
-            <p className="text-gray-600 italic">
-              ✅ No alerts match your filters.
-            </p>
-          ) : (
-            <div className="space-y-4">
-              {filteredAlerts.map((alert) => (
-                <div
-                  key={alert.id}
-                  className={`rounded-xl p-5 border border-gray-200 bg-white shadow-sm hover:shadow-md transition ${
-                    severityColors[alert.severity]
-                  }`}
-                >
-                  <div className="flex justify-between items-center mb-2">
-                    <h4 className="text-lg font-semibold">{alert.title}</h4>
-                    <span className="text-xs font-medium text-gray-600">
-                      {alert.time}
-                    </span>
-                  </div>
-                  <p className="text-sm mb-2 text-gray-700">{alert.message}</p>
-                  <span
-                    className={`text-xs font-semibold uppercase px-2 py-0.5 rounded-full inline-block shadow-sm ${
-                      severityColors[alert.severity]
-                    }`}
-                  >
-                    {alert.severity}
-                  </span>
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
       </div>
+
+      {filteredAlerts.length === 0 ? (
+        <p className="text-gray-500 italic">No alerts found.</p>
+      ) : (
+        <div className="space-y-4">
+          {filteredAlerts.map((alert) => (
+            <div
+              key={alert.id}
+              className="p-4 bg-white rounded-lg border border-gray-200 transform transition-transform duration-300 ease-in-out hover:scale-101"
+            >
+              <div className="flex justify-between items-start mb-1">
+                <h4 className="font-semibold text-gray-900">{alert.title}</h4>
+                <span className="text-xs text-gray-500">{alert.time}</span>
+              </div>
+              <p className="text-sm text-gray-700 mb-2">{alert.message}</p>
+              <span
+                className={`inline-block text-xs font-medium px-2 py-1 rounded-full ${
+                  severityColors[alert.severity]
+                }`}
+              >
+                {alert.severity}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -30,7 +30,7 @@ function MenuLevelTabs<T extends TabItem>({
 
   return (
     <>
-      <div className="flex items-center gap-4 px-4 py-2 border-b border-gray-200">
+      <div className="flex items-center gap-4 px-4 py-2 border-b border-gray-200 overflow-x-auto">
         {order.map((item) => {
           const isActive = selected?.id === item.id;
           return (

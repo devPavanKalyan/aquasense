@@ -1,13 +1,13 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Callback from "../components/pre_login/Callback";
-import ContactUs from "../components/pre_login/ContactUs";
-const Support = React.lazy(() => import("../components/pre_login/Support"));
-const Docs = React.lazy(() => import("../components/pre_login/Docs"));
-const Features = React.lazy(() => import("../components/pre_login/Features"));
-const Home = React.lazy(() => import("../components/pre_login/Home"));
-const HelpUs = React.lazy(() => import("../components/pre_login/HelpUs"));
-const Overview = React.lazy(() => import("../components/pre_login/Overview"));
+import Callback from "../pages/Callback";
+import ContactUs from "../pages/ContactUs";
+const Support = React.lazy(() => import("../pages/Support"));
+const Docs = React.lazy(() => import("../pages/Docs"));
+const Features = React.lazy(() => import("../pages/Features"));
+const Home = React.lazy(() => import("../pages/Home"));
+const HelpUs = React.lazy(() => import("../pages/HelpUs"));
+const Overview = React.lazy(() => import("../pages/Overview"));
 const NotFound = React.lazy(() => import("../components/not_found/NotFound"));
 
 const PublicRoutes = () => {

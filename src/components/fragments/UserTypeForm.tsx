@@ -27,13 +27,13 @@ const UserTypeForm: React.FC<Props> = ({
     e.preventDefault();
 
     axios
-      .get(`http://localhost:9091/api/login/check`, {
+      .get(`http://localhost:9090/api/login/check`, {
         params: { email: email }
       })
       .then(async (result) => {
         if (result.status === 200) {
           const response = await axios.post(
-            `http://localhost:9091/api/notifications/otp?email=${email}`,
+            `http://localhost:9090/api/notifications/otp?email=${email}`,
             null,
             {
               headers: {

@@ -2,8 +2,6 @@ import axios from "axios";
 import { X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
-
-
 interface CaptchaModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -40,7 +38,7 @@ const CaptchaModal: React.FC<CaptchaModalProps> = ({
     const uniqueParam = Date.now();
     try {
       const response = await fetch(
-        `http://localhost:9091/api/captcha/generate?_=${uniqueParam}`,
+        `http://localhost:9090/api/captcha/generate?_=${uniqueParam}`,
         {
           credentials: "include" // ensures cookies are sent/received
         }
@@ -79,7 +77,7 @@ const CaptchaModal: React.FC<CaptchaModalProps> = ({
 
     try {
       const response = await axios.post(
-        `http://localhost:9091/api/captcha/verify`,
+        `http://localhost:9090/api/captcha/verify`,
         null,
         {
           params: { captchaId: captchaId, input: captchaAnswer.trim() },

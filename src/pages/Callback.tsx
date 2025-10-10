@@ -1,9 +1,9 @@
 // Callback.tsx
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 
-const CallbackBackend: React.FC = () => {
+const Callback: React.FC = () => {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
@@ -11,16 +11,18 @@ const CallbackBackend: React.FC = () => {
     // Extract URL parameters.
     const params = new URLSearchParams(window.location.search);
     const code = params.get("code");
-    const codeVerifier = params.get("code_verifier");
+    // const returnedState = params.get("state");
 
-    // Validate the presence of required parameters.
-    if (!code || !codeVerifier) {
-      alert("Invalid or missing PKCE flow parameters.");
-      return;
-    }
+    // Retrieve PKCE parameters stored earlier (e.g., during login initiation)
+    // const expectedState = sessionStorage.getItem("pkce_state") || "";
+    const codeVerifier: string = sessionStorage.getItem("pkce_verifier") || "";
 
     // Async function to exchange the code and code verifier for tokens.
+    if (!codeVerifier || !code) {
+      return;
+    }
     const exchangeCodeForToken = async () => {
+      console.log("Code verifier", codeVerifier);
       try {
         const response = await fetch(
           "http://localhost:9090/api/login/oauth/token",
@@ -51,7 +53,9 @@ const CallbackBackend: React.FC = () => {
         sessionStorage.removeItem("pkce_verifier");
 
         // Navigate to the protected dashboard page.
-        navigate("/");
+        navigate("/", {
+          replace: true
+        });
       } catch (error) {
         console.error("Token exchange error:", error);
         alert("Something went wrong during login.");
@@ -63,9 +67,9 @@ const CallbackBackend: React.FC = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen text-gray-800">
-      Processing login...
+      Loading...
     </div>
   );
 };
 
-export default CallbackBackend;
+export default Callback;

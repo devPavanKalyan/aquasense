@@ -69,7 +69,7 @@ const Register: React.FC = () => {
       const data = { fullName, email };
 
       const response = await axios.post(
-        "http://localhost:9091/api/register/details",
+        "http://localhost:9090/api/register/details",
 
         data,
         {

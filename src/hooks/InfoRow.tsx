@@ -3,6 +3,7 @@ import { Edit } from "react-feather";
 
 type InfoRowProps = {
   icon: ReactNode;
+  label: string;
   value: string | undefined | null;
   fallback?: string;
   onEdit: () => void;
