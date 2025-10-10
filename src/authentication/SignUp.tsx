@@ -2,7 +2,6 @@ import { CheckCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/fragments/Footer";
-import Logo from "../hooks/Logo";
 import { preparePkceAndRedirect } from "../utils/authRedirects";
 
 const SignUpPage = () => {
@@ -55,7 +54,6 @@ const SignUpPage = () => {
         Back to Home
       </div>
 
-      {/* Sign Up Card */}
       <div className="flex justify-center px-10">
         <div
           onClick={() => navigate("/")}
@@ -64,7 +62,6 @@ const SignUpPage = () => {
           Back to Home
         </div>
         <div className="w-full max-w-[900px] bg-white shadow-xl rounded-xl flex flex-col md:flex-row overflow-hidden">
-          {/* Sidebar */}
           <div className="hidden md:flex w-full md:w-1/2 bg-gradient-to-br from-sky-600 to-cyan-600 items-center justify-center relative p-4">
             <div className="absolute w-40 h-40 bg-white/10 rounded-full animate-pulse blur-3xl top-10 left-10"></div>
             <div className="absolute w-60 h-60 bg-white/20 rounded-full animate-spin-slow blur-2xl bottom-0 right-0"></div>
@@ -78,17 +75,22 @@ const SignUpPage = () => {
             </div>
           </div>
 
-          {/* Form */}
           <form
             onSubmit={handleSubmit}
             className="w-full md:w-1/2 bg-gray-50 p-6 sm:p-8 flex flex-col justify-center min-w-0"
           >
             <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-6 text-center sm:text-left flex flex-col sm:flex-row items-center sm:items-start gap-1">
-              Sign Up for <Logo />
+              Sign Up for{" "}
+              <div
+                onClick={() => navigate("/")}
+                className="flex items-center cursor-pointer text-3xl font-extrabold text-[#4B0082] transition-colors"
+                style={{ fontFamily: "'Pacifico', cursive" }}
+              >
+                AquaSense
+              </div>
             </h1>
 
             <div className="space-y-5">
-              {/* Name */}
               <div>
                 <label className="block text-gray-700 font-medium mb-1 text-sm sm:text-base">
                   What should we call you?
@@ -115,7 +117,6 @@ const SignUpPage = () => {
                 </div>
               </div>
 
-              {/* Email */}
               <div>
                 <label className="block text-gray-700 font-medium mb-1 text-sm sm:text-base">
                   Email
@@ -142,7 +143,6 @@ const SignUpPage = () => {
                 </div>
               </div>
 
-              {/* Submit */}
               <div>
                 <input
                   type="submit"
@@ -157,14 +157,12 @@ const SignUpPage = () => {
               </div>
             </div>
 
-            {/* OR separator */}
             <div className="flex items-center my-6">
               <hr className="flex-grow border-gray-300" />
               <span className="mx-2 text-gray-500 text-sm font-medium">OR</span>
               <hr className="flex-grow border-gray-300" />
             </div>
 
-            {/* Sign-in prompt */}
             <div className="text-center">
               <p className="text-sm text-gray-600 mb-2 font-medium">
                 Sign in to an existing AquaSense account
@@ -184,7 +182,6 @@ const SignUpPage = () => {
         </div>
       </div>
 
-      {/* Footer */}
       <div className="flex justify-center mt-10 mb-4">
         <Footer />
       </div>

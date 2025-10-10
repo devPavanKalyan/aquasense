@@ -4,17 +4,18 @@ import { AuthContext } from "../../context/AuthContext";
 
 const Dashboard = () => {
   const { authState } = useContext(AuthContext);
+  const user = authState.user;
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">
-          Welcome back,{" "}
-          <span className="text-blue-600">
-            {authState.user?.name.split(" ")[1]}
+      <div className="mb-10">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 leading-tight">
+          Welcome back,
+          <span className="text-indigo-600 ml-2">
+            {user?.name.split(" ").slice(1).join(" ") || "Pavan Kalyan"}
           </span>
         </h1>
-        <p className="text-gray-500 mt-1">
-          Here’s a quick look at your system.
+        <p className="mt-3 text-gray-500 text-base sm:text-lg max-w-xl">
+          Here’s a quick overview of your system, metrics, and insights.
         </p>
       </div>
 

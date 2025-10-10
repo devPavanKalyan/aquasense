@@ -8,9 +8,9 @@ import {
   Search
 } from "lucide-react";
 import React, { useContext, useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
-import UserMenu from "../components/UserMenu";
+import UserMenu from "../components/UserSidebarMenu";
 import { AuthContext } from "../context/AuthContext";
 
 interface NavItemProps {
@@ -20,16 +20,33 @@ interface NavItemProps {
 }
 
 const NavItemIconName: React.FC<NavItemProps> = ({ link, Icon, name }) => {
+  const location = useLocation();
+  const isActive = location.pathname === link;
+
   return (
     <Link
       to={link}
-      className="flex flex-col items-center justify-center w-full transition hover:text-blue-700"
+      className={`flex flex-col items-center justify-center w-full transition ${
+        isActive ? "text-blue-700" : "hover:text-blue-700"
+      }`}
     >
-      <span className="hover:bg-blue-50 rounded-full px-5 py-2">
-        <Icon className="w-5 h-5 text-gray-500 hover:text-blue-700 transition" />
+      <span
+        className={`rounded-full px-5 py-2 transition ${
+          isActive ? "bg-blue-100" : "hover:bg-blue-100"
+        }`}
+      >
+        <Icon
+          className={`w-5 h-5 text-gray-500 transition ${
+            isActive ? "text-blue-700" : "hover:text-blue-700"
+          }`}
+        />
       </span>
       {name && (
-        <span className="text-gray-700 text-xs text-center font-medium mt-1">
+        <span
+          className={`text-xs text-center font-medium mt-1 transition ${
+            isActive ? "text-blue-700" : "text-gray-700"
+          }`}
+        >
           {name}
         </span>
       )}
@@ -70,39 +87,45 @@ const SideAndBottomBarIcons: React.FC = () => {
       </div>
 
       <div className="flex-1 md:ml-24">
-        <div className="px-6 sm:px-8 py-4 flex flex-row items-center justify-between gap-4">
+        <div className="px-4 sm:px-6 md:px-8 py-4 flex flex-row items-center justify-between gap-4">
           <Logo />
-          <div className="w-full hidden md:flex items-center justify-between md:max-w-lg relative backdrop-blur-sm border border-2 border-blue-100 px-4 py-2 rounded-full transition-all duration-300">
+
+          <div className="flex items-center flex-1 w-full max-w-full relative backdrop-blur-sm border border-2 border-blue-600 md:px-4 py-2 rounded-full transition-all duration-300 md:max-w-lg px-2">
             <button
-              onClick={() => navigate(`?query=${search}`)}
-              className="text-gray-500 hover:text-[#4B0082] h-9 w-9 rounded-full flex items-center justify-center transition-colors"
+              onClick={() => navigate(`/search?query=${search}`)}
+              className="text-gray-500 hover:text-[#4B0082] h-9 w-9 rounded-full flex items-center justify-center transition-colors flex-shrink-0"
             >
-              <Search className="w-5 h-5" />
+              <Search className="w-6 h-6" />
             </button>
 
-            <input
-              type="text"
-              value={search}
-              placeholder="Search"
-              onChange={(e) => setSearch(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") navigate(`/search?query=${search}`);
-              }}
-              className="flex-1 bg-transparent px-2 text-gray-800 placeholder-gray-500 focus:outline-none"
-            />
+            <div className="flex-1">
+              <input
+                type="text"
+                value={search}
+                placeholder="Search"
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") navigate(`/search?query=${search}`);
+                }}
+                className="w-full bg-transparent md:px-2 text-gray-800 placeholder-gray-500 focus:outline-none"
+              />
+            </div>
 
             {search && (
               <button
                 onClick={() => setSearch("")}
-                className="text-gray-500 hover:text-[#4B0082] h-9 w-9 rounded-full flex items-center justify-center transition-colors"
+                className="text-gray-500 hover:text-[#4B0082] h-9 w-9 rounded-full flex items-center justify-center transition-colors flex-shrink-0"
               >
-                <Clear className="w-5 h-5" />
+                <Clear className="w-4 h-4" />
               </button>
             )}
           </div>
 
-          <UserMenu logout={logout} />
+          <div className="flex-shrink-0">
+            <UserMenu logout={logout} />
+          </div>
         </div>
+
         <div className="flex-1 mb-20">
           <Outlet context={{ search }} />
         </div>

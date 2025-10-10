@@ -1,14 +1,19 @@
 import { useNavigate } from "react-router-dom";
+import { CompanyLogo } from "../hooks/CompanyLogo";
 
 const Logo = () => {
   const navigate = useNavigate();
   return (
     <div
       onClick={() => navigate("/")}
-      className="flex cursor-pointer text-3xl font-extrabold mb-2 text-[#4B0082] transition-colors"
+      className="flex items-center cursor-pointer text-3xl font-extrabold text-[#4B0082] transition-colors"
       style={{ fontFamily: "'Pacifico', cursive" }}
     >
-      AquaSense
+      <div className="hidden max-[800px]:hidden md:block">AquaSense</div>
+
+      <div className="block max-[800px]:block md:hidden w-12 h-12">
+        <CompanyLogo />
+      </div>
     </div>
   );
 };

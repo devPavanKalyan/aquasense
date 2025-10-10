@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import Logo from "./Logo";
-import UserMenu from "./UserMenu";
+import UserMenu from "./UserSidebarMenu";
 
 const TopNavBar: React.FC = () => {
   const { logout } = useContext(AuthContext);

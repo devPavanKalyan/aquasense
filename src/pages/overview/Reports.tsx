@@ -3,15 +3,17 @@ import { Download } from "lucide-react";
 
 const Reports = () => {
   return (
-    <div className="flex flex-col gap-10 min-h-screen text-gray-800 max-w-7xl mx-auto p-5">
-      <div className="flex flex-wrap gap-4 items-center">
+    <div className="flex flex-col min-h-screen text-gray-800 max-w-7xl mx-auto p-5">
+      <h2 className="text-2xl font-semibold mb-5">Reports</h2>
+
+      <div className="flex flex-wrap gap-4 items-center mb-5">
         <button className="flex items-center gap-2 px-5 py-2 border border-2 border-blue-600 text-blue-600 font-bold hover:text-white hover:bg-blue-600 rounded-full text-sm hover:bg-blue-50">
           <Tune className="w-4 h-4" />
           Filter
         </button>
       </div>
 
-      <div>
+      <div className="mb-5">
         <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
           Summary
         </h3>
@@ -46,7 +48,7 @@ const Reports = () => {
         </div>
       </div> */}
 
-      <div>
+      <div className="mb-5">
         <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
           Recent Reports
         </h3>
@@ -81,7 +83,7 @@ const Reports = () => {
         </div>
       </div>
 
-      <div className="text-right">
+      <div className="text-right my-5">
         <button className="flex items-center gap-2 px-4 py-2 hover:bg-blue-50 rounded-full border border-2 border-blue-600 text-sm font-semibold transition">
           <Download size={16} />
           Export All Reports (CSV)
