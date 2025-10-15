@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
-import CaptchaModal from "../../components/fragments/CaptchaModal";
-import PasswordSection from "../../components/fragments/PasswordSection";
-import RegisterForm from "../../components/fragments/RegisterForm";
-import VerificationUI from "../../components/fragments/VerificationUI";
-import Logo from "../../components/Logo";
+import Logo from "../hooks/Logo";
+import CaptchaModal from "./CaptchaModal";
+import PasswordSection from "./PasswordSection";
+import RegisterForm from "./RegisterForm";
+import VerificationUI from "./VerificationUI";
 
 axios.defaults.withCredentials = true;
 

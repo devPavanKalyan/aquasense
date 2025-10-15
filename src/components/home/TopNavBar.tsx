@@ -1,8 +1,8 @@
 import { Search } from "lucide-react";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import Logo from "./Logo";
+import { AuthContext } from "../../context/AuthContext";
+import Logo from "../../hooks/Logo";
 import UserMenu from "./UserSidebarMenu";
 
 const TopNavBar: React.FC = () => {

@@ -1,16 +1,16 @@
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import Logo from "../components/Logo";
+import Logo from "../../hooks/Logo";
 import {
   preparePkceAndRedirect,
   redirectToSignup
-} from "../utils/authRedirects";
+} from "../../utils/authRedirects";
 import {
   refs,
   scrollToSection,
   sectionKeys,
   type SectionKeys
-} from "../utils/refs";
+} from "../../utils/refs";
 import NavItems from "./NavItems";
 
 const Header = () => {

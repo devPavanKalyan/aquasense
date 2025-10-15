@@ -14,16 +14,15 @@ const SignUpPage = () => {
   const [pkceReady, setPkceReady] = useState(false);
 
   useEffect(() => {
-    // Prepares PKCE and sets sessionStorage values
     const prepare = async () => {
-      await preparePkceAndRedirect(false); // pass false to avoid redirect
+      await preparePkceAndRedirect(false);
       setPkceReady(true);
     };
     prepare();
   }, []);
 
   const handleLogin = () => {
-    preparePkceAndRedirect(true); // pass true to redirect
+    preparePkceAndRedirect(true); 
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

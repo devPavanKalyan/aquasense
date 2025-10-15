@@ -1,6 +1,6 @@
 // pages/Home.tsx
 import React, { useEffect, useState } from "react";
-import { refs } from "../utils/refs";
+import { refs } from "../../utils/refs";
 
 const domainDetails = [
   {

@@ -1,6 +1,6 @@
 import { Mail, User } from "lucide-react";
 import { useState } from "react";
-import { preparePkceAndRedirect } from "../../utils/authRedirects";
+import { preparePkceAndRedirect } from "../utils/authRedirects";
 
 interface Props {
   isOpen: boolean;

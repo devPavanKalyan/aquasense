@@ -6,7 +6,9 @@ import ServiceDown from "../../hooks/ServiceDown";
 import type { LevelGoal } from "../../styles/types";
 import type { TabsDTO } from "../../utils/TabsDTO";
 
-const MultiLevelMenu = lazy(() => import("../../components/MultiLevelMenu"));
+const MultiLevelMenu = lazy(
+  () => import("../../components/dashboard/MultiLevelMenu")
+);
 const NoGoalSetUp = lazy(() => import("../../components/business/NoGoalSetUp"));
 
 const MonitoringPage = () => {

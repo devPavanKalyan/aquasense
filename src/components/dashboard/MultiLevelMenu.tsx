@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import MenuLevelTabs from "../hooks/MultiLevelTabs";
-import SensorLayout from "../layouts/sensors/SensorLayout";
-import type { LevelActivity, LevelGoal, LevelSensor } from "../styles/types";
-import type { TabsDTO } from "../utils/TabsDTO";
+import MenuLevelTabs from "../../hooks/MultiLevelTabs";
+import SensorLayout from "../../layouts/sensors/SensorLayout";
+import type { LevelActivity, LevelGoal, LevelSensor } from "../../styles/types";
+import type { TabsDTO } from "../../utils/TabsDTO";
 
 type Props = {
   tabs: TabsDTO;

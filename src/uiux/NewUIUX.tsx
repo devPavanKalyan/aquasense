@@ -1,23 +1,29 @@
 import { Clear } from "@mui/icons-material";
-import {
-  AlertOctagon,
-  BarChart2,
-  Home,
-  MonitorCogIcon,
-  Moon,
-  Search
-} from "lucide-react";
+import { BellRing, Home, MonitorCog, Moon, Search } from "lucide-react";
 import React, { useContext, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import Logo from "../components/Logo";
-import UserMenu from "../components/UserSidebarMenu";
+import UserSidebarMenu from "../components/home/UserSidebarMenu";
 import { AuthContext } from "../context/AuthContext";
+import Logo from "../hooks/Logo";
 
 interface NavItemProps {
   link: string;
   Icon: React.ElementType;
   name: string;
 }
+
+const ReportsIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    height="24px"
+    viewBox="0 -960 960 960"
+    width="24px"
+    fill="currentColor"
+    {...props}
+  >
+    <path d="M320-480v-80h320v80H320Zm0-160v-80h320v80H320Zm-80 240h300q29 0 54 12.5t42 35.5l84 110v-558H240v400Zm0 240h442L573-303q-6-8-14.5-12.5T540-320H240v160Zm480 80H240q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h480q33 0 56.5 23.5T800-800v640q0 33-23.5 56.5T720-80Zm-480-80v-640 640Zm0-160v-80 80Z" />
+  </svg>
+);
 
 const NavItemIconName: React.FC<NavItemProps> = ({ link, Icon, name }) => {
   const location = useLocation();
@@ -26,25 +32,30 @@ const NavItemIconName: React.FC<NavItemProps> = ({ link, Icon, name }) => {
   return (
     <Link
       to={link}
-      className={`flex flex-col items-center justify-center w-full transition ${
-        isActive ? "text-blue-700" : "hover:text-blue-700"
+      className={`flex flex-col items-center justify-center w-full transition-all duration-200 ease-in-out ${
+        isActive ? "text-[#4B0082]" : "text-gray-700 hover:text-[#4B0082]"
       }`}
     >
       <span
-        className={`rounded-full px-5 py-2 transition ${
-          isActive ? "bg-blue-100" : "hover:bg-blue-100"
+        className={`rounded-full px-4 py-2 transition-all duration-200 ease-in-out ${
+          isActive
+            ? "bg-[#E6E6FA]" // a soft lavender tone to match #4B0082
+            : "hover:bg-[#E6E6FA]"
         }`}
       >
         <Icon
-          className={`w-5 h-5 text-gray-500 transition ${
-            isActive ? "text-blue-700" : "hover:text-blue-700"
+          className={`w-5 h-5 transition-colors duration-200 ${
+            isActive ? "text-[#4B0082]" : "text-gray-800"
           }`}
         />
       </span>
+
       {name && (
         <span
-          className={`text-xs text-center font-medium mt-1 transition ${
-            isActive ? "text-blue-700" : "text-gray-700"
+          className={`text-xs text-center mt-1 transition-all duration-200 ease-in-out ${
+            isActive
+              ? "text-[#4B0082] font-bold"
+              : "text-gray-700 font-semibold"
           }`}
         >
           {name}
@@ -57,11 +68,14 @@ const NavItemIconName: React.FC<NavItemProps> = ({ link, Icon, name }) => {
 const SideAndBottomBarIcons: React.FC = () => {
   const navItems = [
     { label: "Home", path: "/", icon: Home },
-    { label: "Monitoring", path: "/monitoring", icon: MonitorCogIcon },
-    { label: "Alerts", path: "/alerts", icon: AlertOctagon },
-    { label: "Reports", path: "/reports", icon: BarChart2 }
+    { label: "Monitoring", path: "/monitoring", icon: MonitorCog },
+    { label: "Alerts", path: "/alerts", icon: BellRing },
+    {
+      label: "Reports",
+      path: "/reports",
+      icon: ReportsIcon
+    }
   ];
-
   const { logout } = useContext(AuthContext);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
@@ -90,7 +104,7 @@ const SideAndBottomBarIcons: React.FC = () => {
         <div className="px-4 sm:px-6 md:px-8 py-4 flex flex-row items-center justify-between gap-4">
           <Logo />
 
-          <div className="flex items-center flex-1 w-full max-w-full relative backdrop-blur-sm border border-2 border-blue-600 md:px-4 py-2 rounded-full transition-all duration-300 md:max-w-lg px-2">
+          <div className="flex items-center flex-1 w-full max-w-full relative backdrop-blur-sm border border-2 border-[#4B0082] md:px-4 py-1 rounded-full transition-all duration-300 md:max-w-lg px-2">
             <button
               onClick={() => navigate(`/search?query=${search}`)}
               className="text-gray-500 hover:text-[#4B0082] h-9 w-9 rounded-full flex items-center justify-center transition-colors flex-shrink-0"
@@ -121,8 +135,17 @@ const SideAndBottomBarIcons: React.FC = () => {
             )}
           </div>
 
-          <div className="flex-shrink-0">
-            <UserMenu logout={logout} />
+          <div className="flex items-center gap-2 sm:gap-4 md:gap-6">
+            <button
+              type="button"
+              className="md:hidden p-2 rounded-full hover:bg-gray-100 active:bg-gray-200 transition-all duration-200"
+            >
+              <Moon className="w-6 h-6 text-gray-700" />
+            </button>
+
+            <div className="flex-shrink-0">
+              <UserSidebarMenu logout={logout} />
+            </div>
           </div>
         </div>
 

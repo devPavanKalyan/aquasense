@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import CaptchaModal from "../components/fragments/CaptchaModal";
-import SignInPasswordSection from "../components/fragments/SignInPasswordSection";
-import UserTypeForm from "../components/fragments/UserTypeForm";
-import VerificationUI from "../components/fragments/VerificationUI";
-import Logo from "../components/Logo";
+import Logo from "../hooks/Logo";
+import CaptchaModal from "./CaptchaModal";
+import SignInPasswordSection from "./SignInPasswordSection";
+import UserTypeForm from "./UserTypeForm";
+import VerificationUI from "./VerificationUI";
 
 const SignIn: React.FC = () => {
   //   const [loginType, setLoginType] = useState<"owner" | "staff">("staff");

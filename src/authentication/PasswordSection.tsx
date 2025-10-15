@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Lock, ShieldCheck } from "lucide-react";
 import React, { useState } from "react";
-import { preparePkceAndRedirect } from "../../utils/authRedirects";
+import { preparePkceAndRedirect } from "../utils/authRedirects";
 
 interface Props {
   isOpen: boolean;

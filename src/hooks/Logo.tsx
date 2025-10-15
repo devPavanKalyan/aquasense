@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { CompanyLogo } from "../hooks/CompanyLogo";
+import { CompanyLogo } from "./CompanyLogo";
 
 const Logo = () => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 // NavItems.tsx
-import type { SectionKeys } from "../utils/refs";
+import type { SectionKeys } from "../../utils/refs";
 
 type NavItemsProps = {
   scrollToSection: (key: SectionKeys) => void;

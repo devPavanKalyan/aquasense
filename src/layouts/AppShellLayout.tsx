@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { MidNavBar } from "../components/MidNavBar";
-import TopNavBar from "../components/TopNavBar";
+import { MidNavBar } from "../components/home/MidNavBar";
+import TopNavBar from "../components/home/TopNavBar";
 
 export default function AppShellLayout() {
   return (

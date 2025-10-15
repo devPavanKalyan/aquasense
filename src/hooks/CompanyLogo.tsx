@@ -193,7 +193,7 @@ export const CompanyLogo: React.FC = () => {
 
   return (
     <>
-      <style>{`
+      {/* <style>{`
         @keyframes bounce {
           0%, 100% { transform: translateY(0); }
           50%      { transform: translateY(-10px); }
@@ -201,7 +201,7 @@ export const CompanyLogo: React.FC = () => {
         .logo-bounce {
           animation: bounce 1.5s ease-in-out infinite;
         }
-      `}</style>
+      `}</style> */}
 
       <svg
         width="100%"
