@@ -2,7 +2,7 @@ import { AlertTriangle, RefreshCcw } from "lucide-react";
 
 const ServiceDown = () => {
   return (
-    <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+    <div className="flex flex-col items-center justify-center min-h-screen text-gray-800 md:max-w-7xl mx-auto p-5">
       <AlertTriangle className="w-12 h-12 text-red-500 mb-4 animate-pulse drop-shadow-sm" />
 
       <h2 className="text-2xl font-semibold text-gray-800 mb-2">
