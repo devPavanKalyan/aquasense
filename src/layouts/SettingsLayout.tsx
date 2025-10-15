@@ -80,7 +80,7 @@ export default function SettingsLayout() {
       </header>
 
       <main className="relative min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50 text-gray-800 border-t border-gray-200 px-6 sm:px-16 md:px-20 py-8">
-        <section className="flex flex-row sm:flex-row items-center justify-between mb-5 sm:gap-8">
+        <section className="flex flex-row sm:flex-row items-center mb-5">
           <div className="md:hidden">
             <button
               aria-label="Open menu"
@@ -110,13 +110,6 @@ export default function SettingsLayout() {
               </p>
             </div>
           </div>
-
-          <Link
-            to="/dashboard"
-            className="hidden md:inline text-sm font-medium text-indigo-700 hover:text-indigo-900 transition-colors"
-          >
-            Back to Dashboard →
-          </Link>
         </section>
 
         <aside
