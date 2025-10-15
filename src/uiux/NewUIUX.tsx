@@ -104,12 +104,12 @@ const SideAndBottomBarIcons: React.FC = () => {
         <div className="px-4 sm:px-6 md:px-8 py-4 flex flex-row items-center justify-between gap-4">
           <Logo />
 
-          <div className="flex items-center flex-1 w-full max-w-full relative backdrop-blur-sm border border-2 border-[#4B0082] md:px-4 py-1 rounded-full transition-all duration-300 md:max-w-lg px-2">
+          <div className="flex items-center flex-1 w-full max-w-full relative backdrop-blur-sm border border-2 border-[#4B0082]  py-1 rounded-full transition-all duration-300 md:max-w-lg md:px-2 px-1 gap-2">
             <button
-              onClick={() => navigate(`/search?query=${search}`)}
-              className="text-gray-500 hover:text-[#4B0082] h-9 w-9 rounded-full flex items-center justify-center transition-colors flex-shrink-0"
+              onClick={() => navigate(`/?query=${search}`)}
+              className="bg-[#4B0082] text-white h-9 w-9 rounded-full flex items-center justify-center transition-colors flex-shrink-0"
             >
-              <Search className="w-6 h-6" />
+              <Search className="w-5 h-5" />
             </button>
 
             <div className="flex-1">
@@ -119,7 +119,7 @@ const SideAndBottomBarIcons: React.FC = () => {
                 placeholder="Search"
                 onChange={(e) => setSearch(e.target.value)}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter") navigate(`/search?query=${search}`);
+                  if (e.key === "Enter") navigate(`/?query=${search}`);
                 }}
                 className="w-full bg-transparent md:px-2 text-gray-800 placeholder-gray-500 focus:outline-none"
               />
